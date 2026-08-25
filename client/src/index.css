@@ -550,3 +550,95 @@ img { display: block; max-width: 100%; }
   .portrait-frame { width: 64%; }
   .portrait-frame img { height: 390px; }
 }
+
+/* Interacciones: revelado editorial al desplazarse y respuesta táctil discreta en la galería. */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 460ms var(--ease-out) var(--reveal-delay, 0ms), transform 460ms var(--ease-out) var(--reveal-delay, 0ms);
+  }
+
+  .motion-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card {
+    transition: background-color 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+  }
+
+  .project-card:hover {
+    background: #fbfbfa;
+    box-shadow: inset 3px 0 0 var(--clay);
+  }
+
+  .project-card:hover .project-card-image img {
+    filter: saturate(.98);
+    transform: scale(1.025);
+  }
+
+  .drawing-feature,
+  .kitchen-main,
+  .urbanism-map,
+  .backyard-drawing,
+  .tierra-facade,
+  .tierra-card,
+  .market-photo,
+  .portrait-frame {
+    transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+  }
+
+  .drawing-feature img,
+  .kitchen-main img,
+  .urbanism-map img,
+  .backyard-drawing img,
+  .tierra-facade img,
+  .tierra-card img,
+  .market-photo img,
+  .portrait-frame img {
+    transition: transform 420ms var(--ease-out), filter 240ms var(--ease-out);
+  }
+
+  .drawing-feature:hover,
+  .kitchen-main:hover,
+  .urbanism-map:hover,
+  .backyard-drawing:hover,
+  .tierra-facade:hover,
+  .tierra-card:hover,
+  .market-photo:hover,
+  .portrait-frame:hover {
+    box-shadow: 0 10px 22px rgba(31, 31, 29, .07);
+    transform: translateY(-2px);
+  }
+
+  .drawing-feature:hover img,
+  .kitchen-main:hover img,
+  .urbanism-map:hover img,
+  .backyard-drawing:hover img,
+  .tierra-facade:hover img,
+  .tierra-card:hover img,
+  .market-photo:hover img,
+  .portrait-frame:hover img {
+    filter: saturate(1);
+    transform: scale(1.018);
+  }
+}
+
+button:active,
+a:active {
+  transform: scale(.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

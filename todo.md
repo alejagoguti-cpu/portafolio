@@ -1,6 +1,9 @@
 # Pendientes del portafolio
 
-- [ ] Identificar y corregir el origen del error 404 reportado en el portafolio.
+- [x] Añadir animaciones de entrada suaves al desplazarse por las secciones.
+- [x] Añadir microinteracciones hover a imágenes y fichas de proyecto.
+- [x] Respetar la preferencia de reducción de movimiento del usuario.
+- [x] Identificar y corregir el origen del error 404 reportado en el portafolio.
 - [x] Reducir tipografía expresiva, acentos y textos secundarios para una composición más silenciosa.
 - [x] Simplificar los casos de estudio a imágenes clave y leyendas esenciales.
 - [x] Preparar e integrar la fotografía de fachada de Tierra Mía en el caso de branding espacial.

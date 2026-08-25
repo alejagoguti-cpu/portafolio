@@ -1,6 +1,6 @@
 /**
  * Diseño: Archivo en materia — editorialismo arquitectónico contemporáneo.
- * Principios: composición diagonal, caliza y grafito, acento arcilla, retícula sutil y tipografía escultórica.
+ * Principios: composición diagonal, caliza y grafito, acento arcilla, tipografía escultórica y movimiento sobrio.
  */
 import { useEffect, useState } from "react";
 import {
@@ -119,6 +119,34 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const targets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    if (targets.length === 0) return;
+
+    document.documentElement.classList.add("motion-ready");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -7% 0px" },
+    );
+
+    targets.forEach((target, index) => {
+      target.style.setProperty("--reveal-delay", `${Math.min(index % 3, 2) * 55}ms`);
+      observer.observe(target);
+    });
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("motion-ready");
+    };
+  }, []);
+
   const navigate = (id: string) => {
     setMenuOpen(false);
     window.setTimeout(() => scrollTo(id), 80);
@@ -182,7 +210,7 @@ export default function Home() {
           </button>
         </section>
 
-        <section className="statement-section">
+        <section className="statement-section" data-reveal>
           <div className="section-index"><span>00</span><i> / Declaración</i></div>
           <div className="statement-copy">
             <p className="statement-lead">Diseño en las escalas del <em>territorio, el espacio y la interfaz.</em></p>
@@ -192,7 +220,7 @@ export default function Home() {
           <figure className="statement-image statement-image--two"><img src={assets.backyardMood} alt="Moodboard aportado para Project Backyard" /></figure>
         </section>
 
-        <section id="obras" className="archive-section">
+        <section id="obras" className="archive-section" data-reveal>
           <div className="archive-heading">
             <div className="section-index"><span>01—06</span><i> / Archivo de obras</i></div>
             <div>
@@ -219,7 +247,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="edificaciones" className="case-section case-section--building">
+        <section id="edificaciones" className="case-section case-section--building" data-reveal>
           <div className="case-kicker"><span>01</span><span>Edificaciones</span><span>Diseño arquitectónico</span></div>
           <div className="case-intro">
             <h2>Una arquitectura que se <i>lee</i> en planta, sección y fachada.</h2>
@@ -237,7 +265,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="cocina" className="case-section case-section--kitchen">
+        <section id="cocina" className="case-section case-section--kitchen" data-reveal>
           <div className="case-kicker case-kicker--light"><span>02</span><span>Cocina</span><span>Interiorismo y especificación</span></div>
           <div className="kitchen-header">
             <div><p className="eyebrow eyebrow--light"><span /> Espacio gastronómico</p><h2>El detalle cotidiano,<br /><i>llevado a escala.</i></h2></div>
@@ -250,7 +278,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="urbanismo" className="case-section case-section--urbanism">
+        <section id="urbanismo" className="case-section case-section--urbanism" data-reveal>
           <div className="urbanism-title-block">
             <div className="case-kicker"><span>03</span><span>Urbanismo</span><span>Espacio público y territorio</span></div>
             <h2>La ciudad como<br /><i>infraestructura viva.</i></h2>
@@ -259,7 +287,7 @@ export default function Home() {
           <figure className="urbanism-map"><img src={assets.urbanism} alt="Plano urbano de intervención territorial y espacio público" /><figcaption><span>Estudio territorial</span> Estructura urbana, paisaje y conectividad</figcaption></figure>
         </section>
 
-        <section id="backyard" className="case-section case-section--backyard">
+        <section id="backyard" className="case-section case-section--backyard" data-reveal>
           <div className="case-kicker"><span>04</span><span>Project Backyard</span><span>Remodelación</span></div>
           <div className="backyard-intro">
             <div><p className="eyebrow"><span /> Intervención de vivienda</p><h2>Transformar lo existente para <i>volver a habitar.</i></h2></div>
@@ -274,7 +302,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="tierra-mia" className="case-section case-section--tierra">
+        <section id="tierra-mia" className="case-section case-section--tierra" data-reveal>
           <div className="case-kicker"><span>05</span><span>Tierra Mía</span><span>Restaurante e identidad aplicada</span></div>
           <div className="tierra-intro">
             <div><p className="eyebrow"><span /> Branding de restaurante</p><h2>Una identidad que acompaña el <i>recorrido.</i></h2></div>
@@ -288,7 +316,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="new-covent" className="case-section case-section--market">
+        <section id="new-covent" className="case-section case-section--market" data-reveal>
           <div className="market-topline"><span>06</span><span>New Covent Garden Market</span><span>Identidad y experiencia digital</span></div>
           <div className="market-intro">
             <div><p className="eyebrow"><span /> Caso integrado</p><h2>Una marca que<br />ocupa la <i>ciudad.</i></h2></div>
@@ -312,7 +340,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="perfil" className="profile-section">
+        <section id="perfil" className="profile-section" data-reveal>
           <div className="profile-copy">
             <p className="eyebrow"><span /> Sobre mí</p>
             <h2>Alejandra<br /><i>Gómez Gutiérrez.</i></h2>
@@ -324,7 +352,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer id="contacto" className="site-footer">
+      <footer id="contacto" className="site-footer" data-reveal>
         <div className="footer-top"><span>07</span><span>Contacto</span><span>Colaboraciones, oportunidades y proyectos</span></div>
         <div className="footer-main">
           <h2>Conversemos sobre<br /><i>el próximo espacio.</i></h2>
