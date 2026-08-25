@@ -674,3 +674,110 @@ a:active {
   .case-section--building .drawing-sheet { padding: 9px 9px 0; }
   .drawing-sheet figcaption { padding: 8px 0 10px; font-size: 7px; }
 }
+
+/* Responsive reset: el escritorio se organiza como un dossier amplio y los puntos de quiebre preservan la escala editorial. */
+@media (min-width: 981px) {
+  .topbar { padding-right: clamp(42px, 5.5vw, 110px); padding-left: clamp(42px, 5.5vw, 110px); }
+  .hero-section { min-height: 760px; max-width: 1720px; margin: 0 auto; padding: 132px clamp(42px, 7vw, 130px) 78px; grid-template-columns: minmax(420px, .94fr) minmax(500px, 1.06fr); gap: clamp(60px, 8vw, 150px); }
+  .hero-copy { max-width: 650px; }
+  .hero-copy h1 { max-width: 650px; font-size: clamp(70px, 6.4vw, 112px); line-height: .85; }
+  .hero-copy-bottom { max-width: 430px; }
+  .hero-copy-bottom p { max-width: 285px; font-size: 14px; }
+  .hero-image { min-height: 500px; }
+  .statement-section { display: block; max-width: 1720px; margin: 0 auto; padding: 124px clamp(42px, 9vw, 160px); }
+  .statement-copy { display: grid; grid-template-columns: minmax(0, 1.22fr) minmax(300px, .62fr); gap: clamp(50px, 8vw, 150px); align-items: end; }
+  .statement-lead { max-width: 760px; margin: 0; font-size: clamp(46px, 4.4vw, 74px); line-height: .94; }
+  .statement-body { max-width: 340px; margin: 0; font-size: 14px; }
+  .archive-section { max-width: 1720px; margin: 0 auto; padding: 110px clamp(42px, 7vw, 130px); }
+  .archive-heading { display: grid; margin-bottom: 42px; grid-template-columns: minmax(440px, 1.2fr) minmax(300px, .8fr); gap: clamp(40px, 8vw, 150px); align-items: end; }
+  .archive-heading h2 { font-size: clamp(50px, 4.8vw, 82px); line-height: .9; }
+  .archive-heading .section-index, .archive-heading .eyebrow { display: flex; }
+  .archive-note { display: block; max-width: 310px; justify-self: end; font-size: 13px; }
+  .project-card { min-height: 128px; grid-template-columns: 66px minmax(280px, 1fr) 230px; grid-template-rows: 128px; }
+  .project-card-meta > div { padding: 20px 20px 18px 0; }
+  .project-card-meta h3 { font-size: 20px; }
+  .project-card-meta p { font-size: 8px; }
+  .project-number { padding-top: 21px; font-size: 10px; }
+  .project-number::after { top: 22px; right: 17px; width: 24px; }
+  .case-section--building, .case-section--kitchen, .case-section--backyard, .case-section--tierra, .case-section--market { padding-right: clamp(42px, 7vw, 130px); padding-left: clamp(42px, 7vw, 130px); }
+  .case-kicker, .market-topline, .footer-top { grid-template-columns: 88px minmax(280px, 1fr) minmax(220px, .6fr); font-size: 9px; }
+  .case-kicker span:last-child, .market-topline span:last-child, .footer-top span:last-child { display: block; }
+  .case-intro, .kitchen-header, .backyard-intro, .market-intro, .tierra-intro { display: grid; padding-top: 92px; padding-bottom: 58px; grid-template-columns: minmax(0, 1.3fr) minmax(300px, .7fr); gap: clamp(50px, 8vw, 150px); align-items: end; }
+  .case-intro h2, .kitchen-header h2, .backyard-intro h2, .market-intro h2, .tierra-intro h2 { max-width: 780px; font-size: clamp(48px, 4.4vw, 76px); }
+  .case-intro p, .kitchen-header > p, .backyard-intro > p, .market-intro > p, .tierra-intro > p { max-width: 360px; font-size: 14px; }
+  .drawing-feature { padding: 0; }
+  .drawing-feature img { max-height: 750px; object-fit: contain; }
+  .drawing-archive-label { padding-top: 36px; }
+  .case-section--building .drawing-rack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .drawing-sheet { min-height: 0; }
+  .drawing-sheet img { aspect-ratio: 1.47; }
+  .kitchen-main img { aspect-ratio: 1.7; }
+  .backyard-layout { grid-template-columns: 1fr; }
+  .backyard-drawing { padding: 22px 22px 0; }
+  .tierra-plan img { max-height: 760px; }
+  .tierra-facade img { aspect-ratio: 2.15; }
+  .tierra-grid { gap: 14px; }
+  .market-photo img { min-height: 600px; }
+  .profile-section { max-width: 1720px; margin: 0 auto; padding: 120px clamp(42px, 9vw, 160px) 0; grid-template-columns: minmax(440px, 1fr) minmax(310px, .58fr); gap: clamp(60px, 10vw, 180px); }
+  .profile-copy { padding-bottom: 84px; }
+  .profile-copy h2 { font-size: clamp(50px, 4.8vw, 78px); }
+  .portrait-frame img { height: min(620px, 41vw); }
+  .site-footer { padding-right: clamp(42px, 7vw, 130px); padding-left: clamp(42px, 7vw, 130px); }
+  .footer-main { max-width: 1500px; margin: 0 auto; padding-top: 100px; padding-bottom: 100px; }
+}
+
+@media (min-width: 681px) and (max-width: 980px) {
+  .topbar { padding-right: 5vw; padding-left: 5vw; }
+  .hero-section { min-height: auto; padding: 120px 5vw 68px; grid-template-columns: minmax(300px, .9fr) minmax(320px, 1.1fr); gap: 5vw; }
+  .hero-copy h1 { font-size: clamp(58px, 8.2vw, 86px); }
+  .hero-image { min-height: 390px; }
+  .statement-section { padding: 82px 7vw; }
+  .statement-copy { display: grid; grid-template-columns: 1.25fr .75fr; gap: 6vw; align-items: end; }
+  .statement-lead { margin: 0; font-size: clamp(39px, 5vw, 56px); }
+  .statement-body { margin: 0; }
+  .archive-section { padding: 80px 5vw; }
+  .archive-heading { display: grid; grid-template-columns: 1.2fr .8fr; gap: 6vw; }
+  .archive-heading .section-index, .archive-heading .eyebrow { display: flex; }
+  .archive-note { display: block; }
+  .project-card { min-height: 112px; grid-template-columns: 52px minmax(190px, 1fr) 160px; grid-template-rows: 112px; }
+  .case-section--building, .case-section--kitchen, .case-section--backyard, .case-section--tierra, .case-section--market { padding-right: 5vw; padding-left: 5vw; }
+  .case-intro, .kitchen-header, .backyard-intro, .market-intro, .tierra-intro { display: grid; padding-top: 72px; grid-template-columns: 1.25fr .75fr; gap: 6vw; }
+  .case-intro h2, .kitchen-header h2, .backyard-intro h2, .market-intro h2, .tierra-intro h2 { font-size: clamp(40px, 5.3vw, 60px); }
+  .case-section--building .drawing-rack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .profile-section { padding: 90px 7vw 0; grid-template-columns: 1fr .68fr; gap: 7vw; }
+}
+
+@media (max-width: 680px) {
+  .topbar { padding-right: 18px; padding-left: 18px; }
+  .brand-lockup { gap: 8px; }
+  .brand-lockup b { font-size: 11px; }
+  .hero-section { padding: 90px 20px 48px; }
+  .hero-copy h1 { max-width: 350px; font-size: clamp(46px, 13vw, 64px); line-height: .88; }
+  .hero-copy-bottom p { max-width: 300px; }
+  .statement-section { padding: 58px 20px; }
+  .statement-copy { display: block; }
+  .statement-lead { max-width: 350px; font-size: 30px; }
+  .statement-body { max-width: 340px; margin-top: 20px; }
+  .archive-section { padding: 60px 20px; }
+  .archive-heading { margin-bottom: 26px; }
+  .archive-heading .section-index, .archive-heading .eyebrow { display: flex; }
+  .archive-heading h2 { font-size: 40px; }
+  .archive-note { display: block; margin-top: 16px; }
+  .project-card { min-height: 104px; grid-template-columns: 42px minmax(120px, 1fr) 110px; grid-template-rows: 104px; }
+  .project-card-meta > div { padding: 15px 10px 13px 0; }
+  .project-card-meta h3 { font-size: 15px; }
+  .project-card-meta p { font-size: 6px; }
+  .project-number { padding-top: 16px; }
+  .project-number::after { top: 16px; right: 10px; width: 12px; }
+  .case-kicker, .market-topline, .footer-top { grid-template-columns: 52px 1fr; }
+  .case-intro, .kitchen-header, .backyard-intro, .market-intro, .tierra-intro { padding-top: 52px; padding-bottom: 30px; }
+  .case-intro h2, .kitchen-header h2, .backyard-intro h2, .market-intro h2, .tierra-intro h2, .profile-copy h2 { font-size: 36px; }
+  .case-intro p, .kitchen-header > p, .backyard-intro > p, .market-intro > p, .tierra-intro > p { margin-top: 18px; font-size: 13px; }
+  .drawing-feature img { width: 100%; }
+  .case-section--building .drawing-rack { grid-template-columns: 1fr; }
+  .tierra-plan img { aspect-ratio: 1.26; }
+  .tierra-facade img { aspect-ratio: 1.48; }
+  .profile-section { padding: 70px 20px 0; }
+  .portrait-frame { width: 72%; }
+  .portrait-frame img { height: 420px; }
+}

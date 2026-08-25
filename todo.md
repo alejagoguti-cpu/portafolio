@@ -1,5 +1,8 @@
 # Pendientes del portafolio
 
+- [x] Corregir la composición de escritorio: escala, ancho útil, tipografía e imágenes.
+- [x] Ajustar los puntos de quiebre para mantener la lectura en tablet y móvil.
+- [x] Verificar el portafolio en escritorio, tablet y móvil.
 - [x] Revisar las planimetrías de cafetería/restaurante aportadas.
 - [x] Integrar las planimetrías en el caso Tierra Mía, manteniendo el moodboard en Project Backyard.
 - [x] Mostrar la planimetría de remodelación Gastro-Bar como levantamiento arquitectónico de Tierra Mía.
