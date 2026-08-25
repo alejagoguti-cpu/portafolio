@@ -8,7 +8,6 @@ import {
   ArrowUpRight,
   Building2,
   ChevronRight,
-  Map,
   Menu,
   MoveDown,
   PanelsTopLeft,
@@ -30,7 +29,6 @@ const assets = {
   kitchenSpecs: projectAsset("cocina-especificaciones.png", "/manus-storage/cocina-especificaciones_7281611e.png"),
   kitchenRenderOne: projectAsset("cocina-render-01.png", "/manus-storage/cocina-render-01_a37e6637.png"),
   kitchenRenderTwo: projectAsset("cocina-render-02.png", "/manus-storage/cocina-render-02_d10342c3.png"),
-  urbanism: projectAsset("tercer-proyecto-urbanismo.png", "/manus-storage/tercer-proyecto-urbanismo_96baaa07.png"),
   market: projectAsset("branding-gran-escala.webp", "/manus-storage/branding-gran-escala_60a9df4c.webp"),
   app: projectAsset("app-experiencia-digital.png", "/manus-storage/app-experiencia-digital_f5990bda.png"),
   backyardPlan: projectAsset("backyard-lamina.png", "/manus-storage/backyard-lamina_229c38d2.png"),
@@ -64,16 +62,6 @@ const projectCards = [
   },
   {
     code: "03",
-    name: "Urbanismo",
-    discipline: "Estrategia territorial · Espacio público",
-    scope: "Territorio / estrategia",
-    scale: "Escala urbana",
-    image: assets.urbanism,
-    target: "urbanismo",
-    icon: Map,
-  },
-  {
-    code: "04",
     name: "Project Backyard",
     discipline: "Remodelación · Diagnóstico y materialidad",
     scope: "Vivienda / remodelación",
@@ -83,7 +71,7 @@ const projectCards = [
     icon: Building2,
   },
   {
-    code: "05",
+    code: "04",
     name: "Tierra Mía",
     discipline: "Restaurante · Identidad y branding",
     scope: "Marca / puntos de contacto",
@@ -93,7 +81,7 @@ const projectCards = [
     icon: PanelsTopLeft,
   },
   {
-    code: "06",
+    code: "05",
     name: "New Covent Garden Market",
     discipline: "Branding a gran escala · Experiencia digital",
     scope: "Mercado / identidad",
@@ -213,8 +201,8 @@ export default function Home() {
         <section className="statement-section" data-reveal>
           <div className="section-index"><span>00</span><i> / Declaración</i></div>
           <div className="statement-copy">
-            <p className="statement-lead">Diseño en las escalas del <em>territorio, el espacio y la interfaz.</em></p>
-            <p className="statement-body">Mi trabajo reúne arquitectura, interiorismo, urbanismo y experiencia digital. Me interesa convertir las necesidades reales de las personas y los lugares en soluciones claras, sensibles y contemporáneas.</p>
+            <p className="statement-lead">Diseño entre el <em>espacio, la materia y la interfaz.</em></p>
+            <p className="statement-body">Mi trabajo reúne arquitectura, interiorismo, identidad y experiencia digital. Me interesa convertir las necesidades reales de las personas y los lugares en soluciones claras, sensibles y contemporáneas.</p>
           </div>
           <figure className="statement-image statement-image--one"><img src={assets.buildingFacade} alt="Fachadas desarrolladas para el proyecto de edificaciones" /></figure>
           <figure className="statement-image statement-image--two"><img src={assets.backyardMood} alt="Moodboard aportado para Project Backyard" /></figure>
@@ -222,12 +210,12 @@ export default function Home() {
 
         <section id="obras" className="archive-section" data-reveal>
           <div className="archive-heading">
-            <div className="section-index"><span>01—06</span><i> / Archivo de obras</i></div>
+            <div className="section-index"><span>01—05</span><i> / Archivo de obras</i></div>
             <div>
               <p className="eyebrow"><span /> Selección</p>
               <h2>Proyectos en<br /><i>distintas escalas.</i></h2>
             </div>
-            <p className="archive-note">Cinco expedientes que registran decisiones de territorio, edificio, interior, materia y experiencia de marca.</p>
+            <p className="archive-note">Cinco expedientes que registran decisiones de edificio, interior, materia y experiencia de marca.</p>
           </div>
 
           <div className="project-cards">
@@ -278,17 +266,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="urbanismo" className="case-section case-section--urbanism" data-reveal>
-          <div className="urbanism-title-block">
-            <div className="case-kicker"><span>03</span><span>Urbanismo</span><span>Espacio público y territorio</span></div>
-            <h2>La ciudad como<br /><i>infraestructura viva.</i></h2>
-            <p>Una aproximación territorial que vincula movilidad, áreas verdes, centralidades y vida pública para hacer legible la complejidad urbana.</p>
-          </div>
-          <figure className="urbanism-map"><img src={assets.urbanism} alt="Plano urbano de intervención territorial y espacio público" /><figcaption><span>Estudio territorial</span> Estructura urbana, paisaje y conectividad</figcaption></figure>
-        </section>
-
         <section id="backyard" className="case-section case-section--backyard" data-reveal>
-          <div className="case-kicker"><span>04</span><span>Project Backyard</span><span>Remodelación</span></div>
+          <div className="case-kicker"><span>03</span><span>Project Backyard</span><span>Remodelación</span></div>
           <div className="backyard-intro">
             <div><p className="eyebrow"><span /> Intervención de vivienda</p><h2>Transformar lo existente para <i>volver a habitar.</i></h2></div>
             <p>Una remodelación que comienza con el diagnóstico de la preexistencia y se desarrolla desde la demolición, la nueva organización espacial y una materialidad cálida de piedra, madera y metal.</p>
@@ -303,7 +282,7 @@ export default function Home() {
         </section>
 
         <section id="tierra-mia" className="case-section case-section--tierra" data-reveal>
-          <div className="case-kicker"><span>05</span><span>Tierra Mía</span><span>Restaurante e identidad aplicada</span></div>
+          <div className="case-kicker"><span>04</span><span>Tierra Mía</span><span>Restaurante e identidad aplicada</span></div>
           <div className="tierra-intro">
             <div><p className="eyebrow"><span /> Branding de restaurante</p><h2>Una identidad que acompaña el <i>recorrido.</i></h2></div>
             <p>Tierra Mía es una propuesta de restaurante de comida típica donde la marca se expande más allá del logo: acceso, servicio, empaques y movilidad construyen una experiencia cercana, cálida y reconocible.</p>
@@ -317,7 +296,7 @@ export default function Home() {
         </section>
 
         <section id="new-covent" className="case-section case-section--market" data-reveal>
-          <div className="market-topline"><span>06</span><span>New Covent Garden Market</span><span>Identidad y experiencia digital</span></div>
+          <div className="market-topline"><span>05</span><span>New Covent Garden Market</span><span>Identidad y experiencia digital</span></div>
           <div className="market-intro">
             <div><p className="eyebrow"><span /> Caso integrado</p><h2>Una marca que<br />ocupa la <i>ciudad.</i></h2></div>
             <p>Un caso que conecta branding a gran escala con diseño de interfaz: la identidad acompaña desde la llegada al mercado hasta la compra de producto en una aplicación móvil.</p>
@@ -353,7 +332,7 @@ export default function Home() {
       </main>
 
       <footer id="contacto" className="site-footer" data-reveal>
-        <div className="footer-top"><span>07</span><span>Contacto</span><span>Colaboraciones, oportunidades y proyectos</span></div>
+        <div className="footer-top"><span>06</span><span>Contacto</span><span>Colaboraciones, oportunidades y proyectos</span></div>
         <div className="footer-main">
           <h2>Conversemos sobre<br /><i>el próximo espacio.</i></h2>
           <a className="footer-action" href="mailto:tu-correo@ejemplo.com">Escríbeme <ArrowUpRight size={23} /></a>

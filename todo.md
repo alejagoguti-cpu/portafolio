@@ -1,5 +1,7 @@
 # Pendientes del portafolio
 
+- [x] Eliminar Urbanismo del índice y de la sección de casos.
+- [x] Renumerar los proyectos restantes y revisar la navegación.
 - [x] Añadir animaciones de entrada suaves al desplazarse por las secciones.
 - [x] Añadir microinteracciones hover a imágenes y fichas de proyecto.
 - [x] Respetar la preferencia de reducción de movimiento del usuario.
