@@ -781,3 +781,50 @@ a:active {
   .portrait-frame { width: 72%; }
   .portrait-frame img { height: 420px; }
 }
+
+/* Índice de proyectos: selección cómoda y expresiva; cada proyecto funciona como una ficha completa. */
+@media (min-width: 981px) {
+  .archive-section { padding-top: 120px; padding-bottom: 124px; }
+  .project-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; border: 0; background: transparent; }
+  .project-card { display: grid; min-height: 286px; grid-template-columns: 72px minmax(220px, 1fr) 205px; grid-template-rows: 1fr; overflow: hidden; border: 1px solid var(--soft-line); background: #fff; }
+  .project-card:last-child { border-bottom: 1px solid var(--soft-line); }
+  .project-card-image { grid-column: 3; grid-row: 1; height: 100%; min-height: 284px; }
+  .project-card-image img { height: 100%; object-fit: cover; }
+  .project-number { align-self: start; padding: 26px 0 0 20px; font-size: 11px; }
+  .project-number::after { top: 31px; right: 14px; width: 20px; }
+  .project-card-meta > div { display: flex; padding: 28px 18px 23px 0; grid-column: 2; grid-row: 1; flex-direction: column; justify-content: space-between; }
+  .project-card-meta h3 { max-width: 250px; font-family: var(--serif); font-size: clamp(28px, 2vw, 38px); font-weight: 400; line-height: .95; }
+  .project-card-meta p { max-width: 190px; margin-top: 12px; font-size: 8px; line-height: 1.5; }
+  .project-filing { display: grid; margin-top: 24px; grid-template-columns: 1fr 1fr; gap: 8px; border-top: 1px solid var(--soft-line); font-size: 7px; }
+  .project-arrow { display: flex; position: absolute; right: 20px; bottom: 18px; padding: 0; color: var(--ink); }
+  .project-arrow svg:first-child { display: block; }
+  .project-card:hover { box-shadow: inset 4px 0 0 var(--clay), 0 12px 22px rgba(31,31,29,.05); }
+}
+
+@media (min-width: 681px) and (max-width: 980px) {
+  .project-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; border: 0; background: transparent; }
+  .project-card { display: grid; min-height: 245px; grid-template-columns: 50px minmax(150px, 1fr) 145px; grid-template-rows: 1fr; border: 1px solid var(--soft-line); }
+  .project-card-image { grid-column: 3; grid-row: 1; height: 100%; }
+  .project-card-meta > div { display: flex; padding: 22px 12px 18px 0; grid-column: 2; grid-row: 1; flex-direction: column; justify-content: space-between; }
+  .project-card-meta h3 { font-family: var(--serif); font-size: 25px; line-height: .96; }
+  .project-card-meta p { font-size: 7px; }
+  .project-number { padding: 22px 0 0 14px; }
+  .project-arrow { display: flex; position: absolute; right: 14px; bottom: 14px; padding: 0; }
+  .project-arrow svg:first-child { display: block; }
+  .project-filing { display: grid; margin-top: 18px; font-size: 6px; }
+}
+
+@media (max-width: 680px) {
+  .project-cards { display: grid; grid-template-columns: 1fr; gap: 12px; border: 0; background: transparent; }
+  .project-card { display: grid; min-height: 156px; grid-template-columns: 44px minmax(145px, 1fr) 130px; grid-template-rows: 1fr; border: 1px solid var(--soft-line); }
+  .project-card:last-child { border-bottom: 1px solid var(--soft-line); }
+  .project-card-image { grid-column: 3; grid-row: 1; height: 100%; }
+  .project-card-meta > div { display: flex; padding: 18px 10px 14px 0; grid-column: 2; grid-row: 1; flex-direction: column; justify-content: space-between; }
+  .project-card-meta h3 { font-family: var(--serif); font-size: 22px; line-height: .95; }
+  .project-card-meta p { display: block; margin-top: 8px; font-size: 6px; line-height: 1.42; }
+  .project-number { padding: 18px 0 0 13px; font-size: 8px; }
+  .project-number::after { top: 20px; right: 8px; width: 12px; }
+  .project-filing { display: none; }
+  .project-arrow { display: flex; position: absolute; right: 12px; bottom: 12px; padding: 0; }
+  .project-arrow svg:first-child { display: block; width: 16px; height: 16px; }
+}

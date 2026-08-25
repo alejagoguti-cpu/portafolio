@@ -1,5 +1,9 @@
 # Pendientes del portafolio
 
+- [x] Rediseñar el índice de proyectos con fichas amplias, imágenes visibles y áreas de clic cómodas.
+- [x] Verificar que la selección de proyectos no se vea comprimida en escritorio ni móvil.
+- [x] Comparar la versión pública en computador con la composición esperada.
+- [ ] Corregir la causa visual o de caché que hace que la página web se vea extraña.
 - [x] Corregir la composición de escritorio: escala, ancho útil, tipografía e imágenes.
 - [x] Ajustar los puntos de quiebre para mantener la lectura en tablet y móvil.
 - [x] Verificar el portafolio en escritorio, tablet y móvil.
