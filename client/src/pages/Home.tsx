@@ -16,25 +16,29 @@ import {
   X,
 } from "lucide-react";
 
+const isGitHubPagesBuild = import.meta.env.VITE_GITHUB_PAGES === "true";
+const projectAsset = (fileName: string, manusPath: string) =>
+  isGitHubPagesBuild ? `${import.meta.env.BASE_URL}media/${fileName}` : manusPath;
+
 const assets = {
-  portrait: "/manus-storage/retrato-arquitecta_1eba31a6.webp",
-  buildingMain: "/manus-storage/edificaciones-localizacion-sotano_2da61153.webp",
-  buildingPlanOne: "/manus-storage/edificaciones-plantas-01_7ffbabfc.webp",
-  buildingPlanTwo: "/manus-storage/edificaciones-plantas-02_724a74d9.webp",
-  buildingSection: "/manus-storage/edificaciones-cortes_03d3c36e.webp",
-  buildingFacade: "/manus-storage/edificaciones-fachadas_6e8a21d7.webp",
-  kitchenSpecs: "/manus-storage/cocina-especificaciones_7281611e.png",
-  kitchenRenderOne: "/manus-storage/cocina-render-01_a37e6637.png",
-  kitchenRenderTwo: "/manus-storage/cocina-render-02_d10342c3.png",
-  urbanism: "/manus-storage/tercer-proyecto-urbanismo_96baaa07.png",
-  market: "/manus-storage/branding-gran-escala_60a9df4c.webp",
-  app: "/manus-storage/app-experiencia-digital_f5990bda.png",
-  backyardPlan: "/manus-storage/backyard-lamina_229c38d2.png",
-  backyardMood: "/manus-storage/backyard-moodboard_31a2774f.png",
-  tierraAccess: "/manus-storage/tierra-mia-acceso_62fec537.png",
-  tierraPackaging: "/manus-storage/tierra-mia-empaque_72475af4.png",
-  tierraMobility: "/manus-storage/tierra-mia-movilidad_c661d5eb.png",
-  tierraFacade: "/manus-storage/tierra-mia-fachada_9ac40ee1.png",
+  portrait: projectAsset("retrato-arquitecta.webp", "/manus-storage/retrato-arquitecta_1eba31a6.webp"),
+  buildingMain: projectAsset("edificaciones-localizacion-sotano.webp", "/manus-storage/edificaciones-localizacion-sotano_2da61153.webp"),
+  buildingPlanOne: projectAsset("edificaciones-plantas-01.webp", "/manus-storage/edificaciones-plantas-01_7ffbabfc.webp"),
+  buildingPlanTwo: projectAsset("edificaciones-plantas-02.webp", "/manus-storage/edificaciones-plantas-02_724a74d9.webp"),
+  buildingSection: projectAsset("edificaciones-cortes.webp", "/manus-storage/edificaciones-cortes_03d3c36e.webp"),
+  buildingFacade: projectAsset("edificaciones-fachadas.webp", "/manus-storage/edificaciones-fachadas_6e8a21d7.webp"),
+  kitchenSpecs: projectAsset("cocina-especificaciones.png", "/manus-storage/cocina-especificaciones_7281611e.png"),
+  kitchenRenderOne: projectAsset("cocina-render-01.png", "/manus-storage/cocina-render-01_a37e6637.png"),
+  kitchenRenderTwo: projectAsset("cocina-render-02.png", "/manus-storage/cocina-render-02_d10342c3.png"),
+  urbanism: projectAsset("tercer-proyecto-urbanismo.png", "/manus-storage/tercer-proyecto-urbanismo_96baaa07.png"),
+  market: projectAsset("branding-gran-escala.webp", "/manus-storage/branding-gran-escala_60a9df4c.webp"),
+  app: projectAsset("app-experiencia-digital.png", "/manus-storage/app-experiencia-digital_f5990bda.png"),
+  backyardPlan: projectAsset("backyard-lamina.png", "/manus-storage/backyard-lamina_229c38d2.png"),
+  backyardMood: projectAsset("backyard-moodboard.png", "/manus-storage/backyard-moodboard_31a2774f.png"),
+  tierraAccess: projectAsset("tierra-mia-acceso.png", "/manus-storage/tierra-mia-acceso_62fec537.png"),
+  tierraPackaging: projectAsset("tierra-mia-empaque.png", "/manus-storage/tierra-mia-empaque_72475af4.png"),
+  tierraMobility: projectAsset("tierra-mia-movilidad.png", "/manus-storage/tierra-mia-movilidad_c661d5eb.png"),
+  tierraFacade: projectAsset("tierra-mia-fachada.png", "/manus-storage/tierra-mia-fachada_9ac40ee1.png"),
 };
 
 const projectCards = [
