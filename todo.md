@@ -53,3 +53,5 @@
 - [ ] Solicitar el nombre profesional, ubicación, contacto y descripciones definitivas.
 - [x] Corregir el índice móvil para que el resultado de cada filtro quede visible inmediatamente bajo los controles.
 - [x] Verificar el filtrado de tarjetas en la publicación móvil de GitHub Pages.
+- [x] Simplificar el índice móvil para eliminar espacios vacíos y mostrar el resultado filtrado en el mismo bloque visual.
+- [x] Comprobar la composición final con el tamaño de pantalla compartido por la usuaria.
