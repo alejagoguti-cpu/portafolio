@@ -1,5 +1,6 @@
 # Pendientes del portafolio
 
+- [x] Preparar e integrar la fotografía de fachada de Tierra Mía en el caso de branding espacial.
 - [x] Preparar y subir las imágenes aportadas del caso Tierra Mía.
 - [x] Añadir Tierra Mía al archivo de proyectos y crear su ficha de branding aplicado.
 - [x] Reducir la composición a un sistema visual más minimalista y con menos elementos decorativos.

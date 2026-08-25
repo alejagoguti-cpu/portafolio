@@ -199,6 +199,10 @@ img { display: block; max-width: 100%; }
 .tierra-intro { display: grid; padding: 92px 0 58px; grid-template-columns: 1.35fr .65fr; gap: 9vw; align-items: end; }
 .tierra-intro h2 { margin: 0; font-family: var(--serif); font-size: clamp(44px, 5vw, 83px); font-weight: 400; letter-spacing: -.057em; line-height: .89; }
 .tierra-intro > p { max-width: 330px; margin: 0; font-size: 14px; line-height: 1.7; }
+.tierra-facade { margin: 0 0 36px; }
+.tierra-facade img { width: 100%; aspect-ratio: 2.35; object-fit: cover; object-position: center; filter: saturate(.88); }
+.tierra-facade figcaption { display: flex; padding: 10px 0 13px; justify-content: space-between; border-bottom: 1px solid var(--soft-line); font-family: var(--mono); font-size: 8px; letter-spacing: .04em; }
+.tierra-facade figcaption span { color: var(--clay); }
 .tierra-grid { display: grid; grid-template-columns: 1.28fr .86fr .86fr; gap: 1.2vw; }
 .tierra-card { display: flex; min-width: 0; margin: 0; flex-direction: column; }
 .tierra-card img { width: 100%; aspect-ratio: 1.24; object-fit: cover; filter: saturate(.88); }
@@ -342,6 +346,8 @@ img { display: block; max-width: 100%; }
   .case-section--tierra { padding: 0 20px 65px; }
   .tierra-intro { display: block; padding: 69px 0 40px; }
   .tierra-intro > p { margin-top: 27px; }
+  .tierra-facade { margin-bottom: 25px; }
+  .tierra-facade img { aspect-ratio: 1.42; }
   .tierra-grid { grid-template-columns: 1fr; gap: 18px; }
   .tierra-card img { aspect-ratio: 1.45; }
   .case-section--market { padding: 0 20px; }

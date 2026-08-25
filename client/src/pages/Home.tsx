@@ -34,6 +34,7 @@ const assets = {
   tierraAccess: "/manus-storage/tierra-mia-acceso_62fec537.png",
   tierraPackaging: "/manus-storage/tierra-mia-empaque_72475af4.png",
   tierraMobility: "/manus-storage/tierra-mia-movilidad_c661d5eb.png",
+  tierraFacade: "/manus-storage/tierra-mia-fachada_9ac40ee1.png",
 };
 
 const projectCards = [
@@ -83,7 +84,7 @@ const projectCards = [
     discipline: "Restaurante · Identidad y branding",
     scope: "Marca / puntos de contacto",
     scale: "Espacio + servicio",
-    image: assets.tierraAccess,
+    image: assets.tierraFacade,
     target: "tierra-mia",
     icon: PanelsTopLeft,
   },
@@ -275,6 +276,7 @@ export default function Home() {
             <div><p className="eyebrow"><span /> Branding de restaurante</p><h2>Una identidad que acompaña el <i>recorrido.</i></h2></div>
             <p>Tierra Mía es una propuesta de restaurante de comida típica donde la marca se expande más allá del logo: acceso, servicio, empaques y movilidad construyen una experiencia cercana, cálida y reconocible.</p>
           </div>
+          <figure className="tierra-facade"><img src={assets.tierraFacade} alt="Fachada intervenida con identidad visual de Tierra Mía" /><figcaption><span>TM-00</span> Fachada / marca, horario e identidad espacial</figcaption></figure>
           <div className="tierra-grid">
             <figure className="tierra-card tierra-card--access"><img src={assets.tierraAccess} alt="Tapete de acceso con identidad Tierra Mía" /><figcaption><span>TM-01</span> Acceso / bienvenida</figcaption></figure>
             <figure className="tierra-card"><img src={assets.tierraPackaging} alt="Portavasos y empaque Tierra Mía" /><figcaption><span>TM-02</span> Servicio / empaque</figcaption></figure>
