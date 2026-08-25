@@ -51,3 +51,5 @@
 - [x] Revisar Project1.pdf e integrar los contenidos relevantes en el proyecto correspondiente.
 - [x] Incorporar Project Backyard como remodelación, junto con las referencias del moodboard.
 - [ ] Solicitar el nombre profesional, ubicación, contacto y descripciones definitivas.
+- [x] Corregir el índice móvil para que el resultado de cada filtro quede visible inmediatamente bajo los controles.
+- [x] Verificar el filtrado de tarjetas en la publicación móvil de GitHub Pages.

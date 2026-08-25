@@ -313,7 +313,7 @@ export default function Home() {
             {filteredProjects.map((project, index) => {
               const Icon = project.icon;
               return (
-                <button className={`project-card project-card--${index + 1} ${activeProject === project.target ? "project-card--active" : ""}`} key={project.code} onClick={() => selectProject(project.target)} data-reveal-item>
+                <button className={`project-card project-card--${index + 1} ${activeProject === project.target ? "project-card--active" : ""}`} key={project.code} onClick={() => selectProject(project.target)}>
                   <div className="project-card-image"><img src={project.image} alt={project.name} /></div>
                   <div className="project-card-meta">
                     <span className="project-number">{project.code}</span>
