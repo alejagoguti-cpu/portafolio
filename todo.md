@@ -1,5 +1,10 @@
 # Pendientes del portafolio
 
+- [x] Corregir la composición general que se percibe extraña en la versión web.
+- [x] Añadir filtros por categorías en el índice de proyectos.
+- [x] Implementar vista ampliada de imágenes y planimetrías.
+- [x] Añadir transiciones suaves entre proyectos y un cargador inicial discreto.
+- [x] Verificar filtros, vista ampliada, animaciones y navegación en escritorio y móvil.
 - [x] Añadir animaciones de entrada suaves a las secciones principales.
 - [x] Añadir microinteracciones a tarjetas, imágenes y navegación.
 - [x] Verificar reducción de movimiento y rendimiento en móvil.

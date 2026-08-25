@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   Building2,
   ChevronRight,
+  Expand,
   Menu,
   MoveDown,
   PanelsTopLeft,
@@ -45,6 +46,7 @@ const projectCards = [
     code: "01",
     name: "Edificaciones",
     discipline: "Diseño arquitectónico · Láminas técnicas",
+    category: "arquitectura",
     scope: "Edificio / planimetría",
     scale: "Escala 1:75",
     image: assets.buildingMain,
@@ -55,6 +57,7 @@ const projectCards = [
     code: "02",
     name: "Cocina",
     discipline: "Interiorismo · Especificación de producto",
+    category: "interiorismo",
     scope: "Interior / especificación",
     scale: "Escala doméstica",
     image: assets.kitchenRenderOne,
@@ -65,6 +68,7 @@ const projectCards = [
     code: "03",
     name: "Project Backyard",
     discipline: "Remodelación · Diagnóstico y materialidad",
+    category: "remodelacion",
     scope: "Vivienda / remodelación",
     scale: "Preexistencia + materia",
     image: assets.backyardPlan,
@@ -75,6 +79,7 @@ const projectCards = [
     code: "04",
     name: "Tierra Mía",
     discipline: "Restaurante · Identidad y branding",
+    category: "branding",
     scope: "Marca / puntos de contacto",
     scale: "Espacio + servicio",
     image: assets.tierraFacade,
@@ -85,6 +90,7 @@ const projectCards = [
     code: "05",
     name: "New Covent Garden Market",
     discipline: "Branding a gran escala · Experiencia digital",
+    category: "branding",
     scope: "Mercado / identidad",
     scale: "Marca + aplicación",
     image: assets.market,
@@ -93,6 +99,20 @@ const projectCards = [
   },
 ];
 
+const projectFilters = [
+  { id: "all", label: "Todos" },
+  { id: "arquitectura", label: "Arquitectura" },
+  { id: "interiorismo", label: "Interiorismo" },
+  { id: "remodelacion", label: "Remodelación" },
+  { id: "branding", label: "Branding + UX" },
+];
+
+type LightboxImage = {
+  src: string;
+  alt: string;
+  label: string;
+};
+
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -100,6 +120,10 @@ function scrollTo(id: string) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeProject, setActiveProject] = useState<string | null>(null);
+  const [lightbox, setLightbox] = useState<LightboxImage | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -136,13 +160,61 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsLoading(false), 520);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setLightbox(null);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
+
   const navigate = (id: string) => {
     setMenuOpen(false);
     window.setTimeout(() => scrollTo(id), 80);
   };
 
+  const filteredProjects = activeFilter === "all"
+    ? projectCards
+    : projectCards.filter((project) => project.category === activeFilter);
+
+  const selectProject = (id: string) => {
+    setActiveProject(id);
+    window.setTimeout(() => scrollTo(id), 180);
+    window.setTimeout(() => setActiveProject(null), 1050);
+  };
+
+  const openLightbox = (image: LightboxImage) => setLightbox(image);
+
+  const zoomableProps = (image: LightboxImage) => ({
+    role: "button" as const,
+    tabIndex: 0,
+    onClick: () => openLightbox(image),
+    onKeyDown: (event: React.KeyboardEvent) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox(image);
+      }
+    },
+  });
+
   return (
     <div className="site-shell">
+      {isLoading && (
+        <div className="site-loader" role="status" aria-label="Cargando portafolio">
+          <span className="site-loader-mark" aria-hidden="true"><i /><i /></span>
+          <span>AJGG / ARCHIVO</span>
+        </div>
+      )}
       <header className={`topbar ${scrolled ? "topbar--scrolled" : ""}`}>
         <button className="brand-lockup" onClick={() => scrollTo("inicio")} aria-label="Volver al inicio">
           <span className="brand-monogram" aria-hidden="true"><span /></span>
@@ -169,6 +241,16 @@ export default function Home() {
         <button onClick={() => navigate("perfil")}>02 <span>Perfil</span><ChevronRight size={20} /></button>
         <button onClick={() => navigate("contacto")}>03 <span>Contacto</span><ChevronRight size={20} /></button>
       </div>
+
+      {lightbox && (
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label={`Vista ampliada: ${lightbox.label}`} onClick={() => setLightbox(null)}>
+          <button className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Cerrar vista ampliada"><X size={22} /></button>
+          <div className="lightbox-content" onClick={(event) => event.stopPropagation()}>
+            <img src={lightbox.src} alt={lightbox.alt} />
+            <p><span>Vista ampliada</span>{lightbox.label}</p>
+          </div>
+        </div>
+      )}
 
       <main>
         <section id="inicio" className="hero-section">
@@ -219,11 +301,19 @@ export default function Home() {
             <p className="archive-note">Cinco expedientes que registran decisiones de edificio, interior, materia y experiencia de marca.</p>
           </div>
 
+          <div className="project-filters" aria-label="Filtrar proyectos por categoría">
+            {projectFilters.map((filter) => (
+              <button key={filter.id} className={activeFilter === filter.id ? "is-active" : ""} onClick={() => setActiveFilter(filter.id)}>
+                {filter.label}
+              </button>
+            ))}
+          </div>
+
           <div className="project-cards">
-            {projectCards.map((project, index) => {
+            {filteredProjects.map((project, index) => {
               const Icon = project.icon;
               return (
-                <button className={`project-card project-card--${index + 1}`} key={project.code} onClick={() => scrollTo(project.target)} data-reveal-item>
+                <button className={`project-card project-card--${index + 1} ${activeProject === project.target ? "project-card--active" : ""}`} key={project.code} onClick={() => selectProject(project.target)} data-reveal-item>
                   <div className="project-card-image"><img src={project.image} alt={project.name} /></div>
                   <div className="project-card-meta">
                     <span className="project-number">{project.code}</span>
@@ -236,46 +326,46 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="edificaciones" className="case-section case-section--building" data-reveal>
+        <section id="edificaciones" className={`case-section case-section--building ${activeProject === "edificaciones" ? "case-section--active" : ""}`} data-reveal>
           <div className="case-kicker"><span>01</span><span>Edificaciones</span><span>Diseño arquitectónico</span></div>
           <div className="case-intro">
             <h2>Una arquitectura que se <i>lee</i> en planta, sección y fachada.</h2>
             <p>Desarrollo de un proyecto de edificaciones presentado como un sistema coherente: implantación, estacionamientos, plantas tipo, cortes y fachada. La claridad técnica acompaña una lectura espacial de conjunto.</p>
           </div>
-          <figure className="drawing-feature" data-reveal-item>
+          <figure className="drawing-feature" data-reveal-item {...zoomableProps({ src: assets.buildingMain, alt: "Lámina técnica con localización, sótano y volumetría del proyecto de edificaciones", label: "A-001 / Localización y sótano" })}>
             <img src={assets.buildingMain} alt="Lámina técnica con localización, sótano y volumetría del proyecto de edificaciones" />
             <figcaption><span>A-001</span> Localización y sótano <b>1:75</b></figcaption>
           </figure>
           <div className="drawing-archive-label"><span>Archivo técnico</span><span>Plantas / cortes / fachadas</span></div>
           <div className="drawing-rack" data-reveal-item>
-            <figure className="drawing-sheet"><img src={assets.buildingPlanOne} alt="Plantas de primer piso y pisos tipo" /><figcaption><span>A-002</span> Plantas</figcaption></figure>
-            <figure className="drawing-sheet"><img src={assets.buildingPlanTwo} alt="Plantas de niveles superiores" /><figcaption><span>A-003</span> Pisos tipo</figcaption></figure>
-            <figure className="drawing-sheet"><img src={assets.buildingSection} alt="Cortes longitudinal y transversal" /><figcaption><span>A-004</span> Cortes</figcaption></figure>
-            <figure className="drawing-sheet"><img src={assets.buildingFacade} alt="Fachadas del proyecto de edificaciones" /><figcaption><span>A-005</span> Fachadas</figcaption></figure>
+            <figure className="drawing-sheet" {...zoomableProps({ src: assets.buildingPlanOne, alt: "Plantas de primer piso y pisos tipo", label: "A-002 / Plantas" })}><img src={assets.buildingPlanOne} alt="Plantas de primer piso y pisos tipo" /><figcaption><span>A-002</span> Plantas <Expand size={13} /></figcaption></figure>
+            <figure className="drawing-sheet" {...zoomableProps({ src: assets.buildingPlanTwo, alt: "Plantas de niveles superiores", label: "A-003 / Pisos tipo" })}><img src={assets.buildingPlanTwo} alt="Plantas de niveles superiores" /><figcaption><span>A-003</span> Pisos tipo <Expand size={13} /></figcaption></figure>
+            <figure className="drawing-sheet" {...zoomableProps({ src: assets.buildingSection, alt: "Cortes longitudinal y transversal", label: "A-004 / Cortes" })}><img src={assets.buildingSection} alt="Cortes longitudinal y transversal" /><figcaption><span>A-004</span> Cortes <Expand size={13} /></figcaption></figure>
+            <figure className="drawing-sheet" {...zoomableProps({ src: assets.buildingFacade, alt: "Fachadas del proyecto de edificaciones", label: "A-005 / Fachadas" })}><img src={assets.buildingFacade} alt="Fachadas del proyecto de edificaciones" /><figcaption><span>A-005</span> Fachadas <Expand size={13} /></figcaption></figure>
           </div>
         </section>
 
-        <section id="cocina" className="case-section case-section--kitchen" data-reveal>
+        <section id="cocina" className={`case-section case-section--kitchen ${activeProject === "cocina" ? "case-section--active" : ""}`} data-reveal>
           <div className="case-kicker case-kicker--light"><span>02</span><span>Cocina</span><span>Interiorismo y especificación</span></div>
           <div className="kitchen-header">
             <div><p className="eyebrow eyebrow--light"><span /> Espacio gastronómico</p><h2>El detalle cotidiano,<br /><i>llevado a escala.</i></h2></div>
             <p>Un interior gastronómico articulado por altura, luz natural y superficies de trabajo. La propuesta reúne materialidad, equipamiento y una atmósfera doméstica de gran presencia espacial.</p>
           </div>
           <div className="kitchen-gallery" data-reveal-item>
-            <figure className="kitchen-main"><img src={assets.kitchenRenderOne} alt="Render de cocina con isla y gran altura" /><figcaption>Vista principal / render de interior</figcaption></figure>
+            <figure className="kitchen-main" {...zoomableProps({ src: assets.kitchenRenderOne, alt: "Render de cocina con isla y gran altura", label: "Cocina / Vista principal" })}><img src={assets.kitchenRenderOne} alt="Render de cocina con isla y gran altura" /><figcaption>Vista principal / render de interior <Expand size={13} /></figcaption></figure>
             <figure className="kitchen-detail"><img src={assets.kitchenRenderTwo} alt="Render de cocina con grandes ventanas verticales" /><figcaption>Luz, altura y material</figcaption></figure>
             <figure className="kitchen-spec"><img src={assets.kitchenSpecs} alt="Especificación de zona de lavado y productos" /><figcaption>Zona de lavado / especificaciones</figcaption></figure>
           </div>
         </section>
 
-        <section id="backyard" className="case-section case-section--backyard" data-reveal>
+        <section id="backyard" className={`case-section case-section--backyard ${activeProject === "backyard" ? "case-section--active" : ""}`} data-reveal>
           <div className="case-kicker"><span>03</span><span>Project Backyard</span><span>Remodelación</span></div>
           <div className="backyard-intro">
             <div><p className="eyebrow"><span /> Intervención de vivienda</p><h2>Transformar lo existente para <i>volver a habitar.</i></h2></div>
             <p>Una remodelación que comienza con el diagnóstico de la preexistencia y se desarrolla desde la demolición, la nueva organización espacial y una materialidad cálida de piedra, madera y metal.</p>
           </div>
           <div className="backyard-layout" data-reveal-item>
-            <figure className="backyard-drawing"><img src={assets.backyardPlan} alt="Planta, sección y axonometría de Project Backyard" /><figcaption><span>A-002</span> Demolición, planta, sección y vista axonométrica</figcaption></figure>
+            <figure className="backyard-drawing" {...zoomableProps({ src: assets.backyardPlan, alt: "Planta, sección y axonometría de Project Backyard", label: "Project Backyard / Planimetría" })}><img src={assets.backyardPlan} alt="Planta, sección y axonometría de Project Backyard" /><figcaption><span>A-002</span> Demolición, planta, sección y vista axonométrica <Expand size={13} /></figcaption></figure>
             <div className="backyard-materials">
               <div className="backyard-material-copy"><span className="case-label">Moodboard de materialidad</span><h3>Grano, textura<br />y luz <i>clara.</i></h3><p>Una paleta doméstica de madera oscura y clara, piedra natural, superficies blancas y accesorios metálicos para dar continuidad entre función y atmósfera.</p></div>
               <figure className="backyard-mood"><img src={assets.backyardMood} alt="Moodboard de madera, piedra, sanitarios y grifería para Project Backyard" /><figcaption>Referencias de acabado / Project Backyard</figcaption></figure>
@@ -283,14 +373,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="tierra-mia" className="case-section case-section--tierra" data-reveal>
+        <section id="tierra-mia" className={`case-section case-section--tierra ${activeProject === "tierra-mia" ? "case-section--active" : ""}`} data-reveal>
           <div className="case-kicker"><span>04</span><span>Tierra Mía</span><span>Restaurante e identidad aplicada</span></div>
           <div className="tierra-intro">
             <div><p className="eyebrow"><span /> Branding de restaurante</p><h2>Una identidad que acompaña el <i>recorrido.</i></h2></div>
             <p>Tierra Mía reúne remodelación, levantamiento arquitectónico e identidad aplicada. El proyecto articula espacio, acceso, servicio, empaques y movilidad en una experiencia cercana y reconocible.</p>
           </div>
-          <figure className="tierra-plan" data-reveal-item><img src={assets.tierraPlan} alt="Planimetría y axonometría de remodelación Gastro-Bar para Tierra Mía" /><figcaption><span>TM-A022</span> Levantamiento arquitectónico / remodelación Gastro-Bar</figcaption></figure>
-          <figure className="tierra-facade" data-reveal-item><img src={assets.tierraFacade} alt="Fachada intervenida con identidad visual de Tierra Mía" /><figcaption><span>TM-00</span> Fachada / marca, horario e identidad espacial</figcaption></figure>
+          <figure className="tierra-plan" data-reveal-item {...zoomableProps({ src: assets.tierraPlan, alt: "Planimetría y axonometría de remodelación Gastro-Bar para Tierra Mía", label: "Tierra Mía / Levantamiento arquitectónico" })}><img src={assets.tierraPlan} alt="Planimetría y axonometría de remodelación Gastro-Bar para Tierra Mía" /><figcaption><span>TM-A022</span> Levantamiento arquitectónico / remodelación Gastro-Bar <Expand size={13} /></figcaption></figure>
+          <figure className="tierra-facade" data-reveal-item {...zoomableProps({ src: assets.tierraFacade, alt: "Fachada intervenida con identidad visual de Tierra Mía", label: "Tierra Mía / Fachada e identidad espacial" })}><img src={assets.tierraFacade} alt="Fachada intervenida con identidad visual de Tierra Mía" /><figcaption><span>TM-00</span> Fachada / marca, horario e identidad espacial <Expand size={13} /></figcaption></figure>
           <div className="tierra-grid" data-reveal-item>
             <figure className="tierra-card tierra-card--access"><img src={assets.tierraAccess} alt="Tapete de acceso con identidad Tierra Mía" /><figcaption><span>TM-01</span> Acceso / bienvenida</figcaption></figure>
             <figure className="tierra-card"><img src={assets.tierraPackaging} alt="Portavasos y empaque Tierra Mía" /><figcaption><span>TM-02</span> Servicio / empaque</figcaption></figure>
@@ -298,14 +388,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="new-covent" className="case-section case-section--market" data-reveal>
+        <section id="new-covent" className={`case-section case-section--market ${activeProject === "new-covent" ? "case-section--active" : ""}`} data-reveal>
           <div className="market-topline"><span>05</span><span>New Covent Garden Market</span><span>Identidad y experiencia digital</span></div>
           <div className="market-intro">
             <div><p className="eyebrow"><span /> Caso integrado · Identidad + UX</p><h2>Una marca que<br />ocupa la <i>ciudad.</i></h2></div>
             <p>Un caso que conecta branding a gran escala con diseño de interfaz: la identidad acompaña desde la llegada al mercado hasta la compra de producto en una aplicación móvil.</p>
           </div>
           <div className="market-showcase" data-reveal-item>
-            <figure className="market-photo"><img src={assets.market} alt="Branding de gran escala en New Covent Garden Market" /><figcaption>Branding a gran escala / acceso a New Covent Garden Market</figcaption></figure>
+            <figure className="market-photo" {...zoomableProps({ src: assets.market, alt: "Branding de gran escala en New Covent Garden Market", label: "New Covent Garden Market / Branding urbano" })}><img src={assets.market} alt="Branding de gran escala en New Covent Garden Market" /><figcaption>Branding a gran escala / acceso a New Covent Garden Market <Expand size={13} /></figcaption></figure>
             <div className="market-application">
               <div className="market-copy"><span className="case-label">Diseño de aplicación</span><h3>La misma experiencia,<br />en la mano.</h3><p>Una interfaz móvil enfocada en catálogo, favoritos y compra rápida de producto fresco.</p><span className="market-rule" /></div>
               <figure className="app-image"><img src={assets.app} alt="Diseño de aplicación móvil para productos frescos" /><figcaption><span>A-05.2</span> Flujo de compra y selección de producto</figcaption></figure>
