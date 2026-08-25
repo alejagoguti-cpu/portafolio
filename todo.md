@@ -1,7 +1,7 @@
 # Pendientes del portafolio
 
 - [x] Reducir la composición a un sistema visual más minimalista y con menos elementos decorativos.
-- [ ] Sincronizar la versión final minimalista con el repositorio de GitHub conectado.
+- [x] Sincronizar la versión final minimalista con el repositorio de GitHub conectado.
 - [x] Aplicar un fondo blanco y una estética minimalista al portafolio completo.
 - [x] Incorporar el perfil profesional y académico de Alejandra Gómez Gutiérrez.
 - [x] Expresar el interés de Alejandra por la tecnología aplicada a la arquitectura y el diseño.
