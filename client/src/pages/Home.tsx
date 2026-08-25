@@ -17,8 +17,9 @@ import {
 } from "lucide-react";
 
 const isGitHubPagesBuild = import.meta.env.VITE_GITHUB_PAGES === "true";
+const publicAssetRevision = "20260825-2214";
 const projectAsset = (fileName: string, manusPath: string) =>
-  isGitHubPagesBuild ? `${import.meta.env.BASE_URL}media/${fileName}` : manusPath;
+  isGitHubPagesBuild ? `${import.meta.env.BASE_URL}media/${fileName}?v=${publicAssetRevision}` : manusPath;
 
 const assets = {
   portrait: projectAsset("retrato-arquitecta.webp", "/manus-storage/retrato-arquitecta_1eba31a6.webp"),

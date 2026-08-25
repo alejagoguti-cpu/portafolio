@@ -57,3 +57,6 @@
 - [x] Comprobar la composición final con el tamaño de pantalla compartido por la usuaria.
 - [x] Añadir una transición de resultados breve y continua al cambiar de filtro.
 - [x] Reducir la altura y densidad visual de los controles de filtro en móvil.
+- [ ] Restaurar las rutas y la carga de todos los recursos visuales en GitHub Pages.
+- [ ] Confirmar la respuesta HTTP de las imágenes principales en la versión pública.
+- [ ] Validar la carga de imágenes en una vista móvil pública con las rutas versionadas.
