@@ -1,5 +1,6 @@
 # Pendientes del portafolio
 
+- [ ] Verificar las rutas públicas del portafolio y corregir el nuevo error 404 reportado.
 - [x] Eliminar Urbanismo del índice y de la sección de casos.
 - [x] Renumerar los proyectos restantes y revisar la navegación.
 - [x] Añadir animaciones de entrada suaves al desplazarse por las secciones.

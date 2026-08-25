@@ -1,13 +1,15 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Router as WouterRouter, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
+// Diseño: Archivo en materia — la base dinámica conserva una navegación transparente en vista previa y GitHub Pages.
+const routeBase = import.meta.env.BASE_URL === "/" ? undefined : import.meta.env.BASE_URL.replace(/\/$/, "");
 
-function Router() {
+function AppRoutes() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
@@ -32,7 +34,9 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <WouterRouter base={routeBase}>
+            <AppRoutes />
+          </WouterRouter>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
