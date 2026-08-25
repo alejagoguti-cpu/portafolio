@@ -303,7 +303,7 @@ export default function Home() {
 
           <div className="project-filters" aria-label="Filtrar proyectos por categoría">
             {projectFilters.map((filter) => (
-              <button key={filter.id} className={activeFilter === filter.id ? "is-active" : ""} onClick={() => setActiveFilter(filter.id)}>
+              <button key={filter.id} className={activeFilter === filter.id ? "is-active" : ""} onClick={() => setActiveFilter(filter.id)} aria-pressed={activeFilter === filter.id}>
                 {filter.label}
               </button>
             ))}
@@ -334,7 +334,7 @@ export default function Home() {
           </div>
           <figure className="drawing-feature" data-reveal-item {...zoomableProps({ src: assets.buildingMain, alt: "Lámina técnica con localización, sótano y volumetría del proyecto de edificaciones", label: "A-001 / Localización y sótano" })}>
             <img src={assets.buildingMain} alt="Lámina técnica con localización, sótano y volumetría del proyecto de edificaciones" />
-            <figcaption><span>A-001</span> Localización y sótano <b>1:75</b></figcaption>
+            <figcaption><span>A-001</span> Localización y sótano <b>1:75</b><Expand size={13} /></figcaption>
           </figure>
           <div className="drawing-archive-label"><span>Archivo técnico</span><span>Plantas / cortes / fachadas</span></div>
           <div className="drawing-rack" data-reveal-item>
