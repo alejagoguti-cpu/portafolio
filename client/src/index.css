@@ -1,0 +1,431 @@
+/* Diseño: Archivo en materia — galería blanca, monograma arquitectónico y arcilla como señal de precisión. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-sans: "DM Sans", sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1f1f1d;
+  --primary: #c44d32;
+  --primary-foreground: #fffaf3;
+  --border: rgba(36, 35, 31, 0.17);
+  --ring: #c44d32;
+  --ink: #1f1f1d;
+  --paper: #ffffff;
+  --paper-light: #ffffff;
+  --clay: #c44d32;
+  --moss: #697454;
+  --charcoal: #272722;
+  --soft-line: rgba(36, 35, 31, 0.17);
+  --mono: "DM Mono", monospace;
+  --serif: "DM Serif Display", serif;
+  --sans: "DM Sans", sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+button, a { font: inherit; }
+button { border: 0; background: none; color: inherit; }
+button:not(:disabled), a[href] { cursor: pointer; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--clay); color: #fffaf3; }
+
+.site-shell { overflow: clip; background: var(--paper); }
+.topbar { position: fixed; top: 0; z-index: 40; display: flex; width: 100%; height: 80px; padding: 0 3.1vw; align-items: center; justify-content: space-between; transition: background 180ms var(--ease-out), box-shadow 180ms var(--ease-out), height 180ms var(--ease-out); }
+.topbar--scrolled { height: 66px; background: rgba(255, 255, 255, .92); box-shadow: 0 1px 0 var(--soft-line); backdrop-filter: blur(16px); }
+.brand-lockup { display: flex; align-items: center; gap: 10px; padding: 5px 0; text-align: left; }
+.brand-monogram { position: relative; display: block; width: 34px; height: 34px; flex: 0 0 34px; }
+.brand-monogram::before, .brand-monogram::after { position: absolute; width: 22px; height: 24px; background: var(--clay); content: ""; }
+.brand-monogram::before { top: 0; left: 0; }
+.brand-monogram::after { right: 0; bottom: 0; }
+.brand-monogram > span { position: absolute; z-index: 1; top: 12px; left: 12px; width: 10px; height: 10px; background: #fff; }
+.brand-lockup > span:last-child { display: grid; gap: 1px; line-height: .9; }
+.brand-lockup b { font-size: 13px; letter-spacing: .045em; }
+.brand-lockup em { font-family: var(--mono); font-size: 8px; font-style: normal; letter-spacing: .13em; }
+.desktop-nav { display: flex; gap: 31px; margin-left: auto; margin-right: 5.3vw; }
+.desktop-nav button, .menu-trigger { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .09em; transition: color 160ms var(--ease-out); }
+.desktop-nav button:hover { color: var(--clay); }
+.menu-trigger { display: flex; align-items: center; gap: 8px; padding: 8px 0; }
+.menu-trigger:hover { color: var(--clay); }
+.mobile-menu { position: fixed; inset: 0; z-index: 35; display: flex; visibility: hidden; padding: 118px 7vw 40px; flex-direction: column; gap: 0; background: var(--ink); color: var(--paper-light); opacity: 0; pointer-events: none; transition: opacity 220ms var(--ease-out), visibility 220ms; }
+.mobile-menu--open { visibility: visible; opacity: 1; pointer-events: auto; }
+.mobile-menu button { display: grid; padding: 18px 0; grid-template-columns: 35px 1fr 24px; align-items: center; border-bottom: 1px solid rgba(247,244,237,.2); font-family: var(--mono); font-size: 10px; text-align: left; }
+.mobile-menu button span { font-family: var(--serif); font-size: 38px; }
+
+.hero-section { position: relative; display: grid; min-height: min(900px, 100svh); padding: 130px 3.1vw 55px; grid-template-columns: minmax(315px, .92fr) minmax(420px, 1.38fr); gap: clamp(26px, 7vw, 120px); align-items: center; }
+.hero-section::before { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(90deg, rgba(36,35,31,.06) 1px, transparent 1px), linear-gradient(rgba(36,35,31,.06) 1px, transparent 1px); background-position: 3.1vw 0; background-size: 80px 80px; content: ""; opacity: .55; pointer-events: none; }
+.hero-copy, .hero-image-wrap, .hero-rail, .scroll-cue, .hero-gridline { z-index: 1; }
+.hero-copy { max-width: 670px; }
+.eyebrow { display: flex; margin: 0 0 22px; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; }
+.eyebrow > span { display: inline-block; width: 25px; height: 1px; background: var(--clay); }
+.hero-copy h1, h2, h3, p { margin-top: 0; }
+.hero-copy h1 { margin-bottom: 31px; font-family: var(--serif); font-size: clamp(64px, 8.1vw, 142px); font-weight: 400; letter-spacing: -.065em; line-height: .78; }
+.hero-copy h1 i { color: var(--clay); font-style: italic; }
+.hero-copy-bottom { display: flex; max-width: 400px; align-items: flex-end; gap: 21px; }
+.hero-copy-bottom p { max-width: 210px; margin: 0; font-size: 13px; line-height: 1.55; }
+.text-link { display: inline-flex; padding: 0; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.text-link--accent { color: var(--clay); }
+.text-link:hover svg { transform: translate(3px, 3px); }
+.text-link svg { transition: transform 180ms var(--ease-out); }
+.hero-image-wrap { position: relative; width: 100%; margin: 0; align-self: center; }
+.hero-image-wrap::before { position: absolute; z-index: -1; top: -16px; right: -16px; width: 55%; height: 54%; border-top: 1px solid var(--clay); border-right: 1px solid var(--clay); content: ""; }
+.hero-image { width: 100%; min-height: 495px; object-fit: cover; }
+.hero-image-wrap figcaption { display: flex; padding-top: 11px; justify-content: space-between; font-family: var(--mono); font-size: 9px; letter-spacing: .04em; }
+.hero-image-wrap figcaption span { color: var(--clay); }
+.hero-rail { position: absolute; right: 3.1vw; bottom: 54px; display: flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: 9px; letter-spacing: .05em; transform: rotate(-90deg) translateX(100%); transform-origin: right bottom; }
+.hero-rail-line { width: 48px; height: 1px; background: var(--ink); }
+.scroll-cue { position: absolute; bottom: 52px; left: 3.1vw; display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 9px; letter-spacing: .04em; }
+.scroll-cue:hover svg { transform: translateY(3px); }
+.scroll-cue svg { transition: transform 180ms var(--ease-out); }
+.hero-gridline { position: absolute; width: 1px; background: var(--soft-line); }
+.hero-gridline--one { top: 0; bottom: 0; left: 39.7%; }
+.hero-gridline--two { top: 0; right: 15%; height: 21%; background: var(--clay); }
+
+.statement-section { position: relative; display: grid; padding: 135px 10.8vw 170px 12.7vw; grid-template-columns: 160px minmax(410px, 630px) 1fr; gap: 3vw; background: #fff; }
+.statement-section::after { position: absolute; top: 76px; right: 8.3vw; width: 130px; height: 130px; border: 1px solid rgba(196,77,50,.45); content: ""; }
+.section-index { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.section-index span { color: var(--clay); }
+.section-index i { font-style: normal; }
+.statement-copy { position: relative; z-index: 2; }
+.statement-lead { max-width: 590px; margin-bottom: 33px; font-family: var(--serif); font-size: clamp(34px, 4.1vw, 66px); letter-spacing: -.045em; line-height: .98; }
+.statement-lead em { color: var(--clay); font-style: italic; }
+.statement-body { max-width: 365px; margin: 0 0 0 auto; font-size: 14px; line-height: 1.7; }
+.statement-image { position: absolute; margin: 0; overflow: hidden; }
+.statement-image img { width: 100%; height: 100%; object-fit: cover; }
+.statement-image--one { right: 0; bottom: 0; width: 27%; height: 63%; }
+.statement-image--two { top: 46px; right: 21.5%; width: 15%; height: 29%; }
+
+.archive-section { padding: 118px 3.1vw 125px; background: #fff; color: var(--ink); }
+.archive-heading { display: grid; margin-bottom: 63px; grid-template-columns: 1fr 2fr .9fr; gap: 3.5vw; align-items: end; }
+.archive-heading .section-index span { color: var(--clay); }
+.archive-heading h2, .case-intro h2, .kitchen-header h2, .urbanism-title-block h2, .market-intro h2, .process-copy h2, .profile-copy h2, .footer-main h2 { margin: 0; font-family: var(--serif); font-size: clamp(44px, 5vw, 83px); font-weight: 400; letter-spacing: -.057em; line-height: .89; }
+.archive-heading h2 i { color: var(--clay); }
+.archive-heading .eyebrow { margin-bottom: 17px; }
+.archive-note { max-width: 220px; margin: 0; padding-bottom: 3px; font-size: 13px; line-height: 1.58; }
+.project-cards { display: grid; grid-template-columns: 1.05fr .95fr 1.05fr .95fr; gap: 1px; background: rgba(31,31,29,.19); border-top: 1px solid rgba(31,31,29,.19); border-bottom: 1px solid rgba(31,31,29,.19); }
+.project-card { position: relative; overflow: hidden; min-height: 462px; padding: 0; background: #fff; color: var(--ink); text-align: left; }
+.project-card-image { height: 370px; overflow: hidden; }
+.project-card-image::after { position: absolute; right: 0; bottom: 92px; left: 0; height: 90px; background: linear-gradient(transparent, #fff); content: ""; }
+.project-card-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.8); transition: transform 500ms var(--ease-out), filter 400ms var(--ease-out); }
+.project-card--1 .project-card-image img { object-position: 51% center; }
+.project-card--3 .project-card-image img { object-position: 37% center; }
+.project-card--4 .project-card-image img { object-position: 51% center; }
+.project-card:hover .project-card-image img { filter: saturate(1); transform: scale(1.045); }
+.project-card-meta { position: absolute; right: 17px; bottom: 17px; left: 17px; display: grid; grid-template-columns: 28px 1fr 37px; gap: 7px; align-items: start; }
+.project-number { color: var(--clay); font-family: var(--mono); font-size: 10px; }
+.project-card-meta h3 { margin: 0 0 5px; font-family: var(--serif); font-size: 26px; font-weight: 400; line-height: .98; }
+.project-card-meta p { margin: 0; font-size: 10px; line-height: 1.4; opacity: .65; }
+.project-filing { display: grid; margin-top: 11px; grid-template-columns: 1fr 1fr; gap: 6px; border-top: 1px solid var(--soft-line); color: var(--ink); font-family: var(--mono); font-size: 7px; letter-spacing: .03em; line-height: 1.35; opacity: .82; }
+.project-filing span { padding-top: 6px; }
+.project-filing span:last-child { text-align: right; }
+.project-arrow { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; color: var(--clay); transition: transform 180ms var(--ease-out); }
+.project-card:hover .project-arrow { transform: translate(3px, -3px); }
+
+.case-section { scroll-margin-top: 66px; }
+.case-section--building { padding: 0 3.1vw 125px; background: #fff; }
+.case-kicker, .market-topline, .footer-top { display: grid; padding: 18px 0; grid-template-columns: 22% 1fr 1fr; border-bottom: 1px solid var(--soft-line); font-family: var(--mono); font-size: 9px; letter-spacing: .055em; text-transform: uppercase; }
+.case-kicker span:first-child, .market-topline span:first-child, .footer-top span:first-child { color: var(--clay); }
+.case-intro { display: grid; padding: 92px 11.5% 69px; grid-template-columns: 1.4fr .6fr; gap: 9vw; align-items: end; }
+.case-intro h2 { max-width: 680px; }
+.case-intro p, .kitchen-header > p, .urbanism-title-block > p, .market-intro > p, .process-copy > p, .profile-copy > p { margin: 0; font-size: 14px; line-height: 1.7; }
+.drawing-feature { margin: 0; padding: 0 6.2%; background: #fff; }
+.drawing-feature img { width: 100%; border: 1px solid rgba(36,35,31,.1); }
+.drawing-feature figcaption, .drawing-rack figcaption, .kitchen-gallery figcaption, .urbanism-map figcaption, .market-photo figcaption, .portrait-frame figcaption { display: flex; padding: 11px 0 18px; justify-content: space-between; font-family: var(--mono); font-size: 9px; letter-spacing: .045em; }
+.drawing-feature figcaption span { color: var(--clay); }
+.drawing-rack { display: grid; margin: 57px 6.2% 0; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.drawing-rack figure { margin: 0; border-top: 1px solid var(--ink); }
+.drawing-rack img { width: 100%; padding-top: 7px; aspect-ratio: 1.42; object-fit: cover; object-position: top; }
+
+.case-section--kitchen { padding: 0 3.1vw 119px; background: #fff; color: var(--ink); }
+.case-kicker--light { border-color: var(--soft-line); }
+.kitchen-header { display: grid; padding: 100px 11.5% 60px; grid-template-columns: 1.55fr .45fr; gap: 9vw; align-items: end; }
+.eyebrow--light > span { background: var(--clay); }
+.kitchen-header h2 i { color: var(--ink); }
+.kitchen-header > p { max-width: 320px; }
+.kitchen-gallery { display: grid; grid-template-columns: 1.56fr .75fr .82fr; gap: 1.25vw; align-items: start; }
+.kitchen-gallery figure { margin: 0; }
+.kitchen-gallery img { width: 100%; object-fit: cover; }
+.kitchen-main { grid-row: span 2; }
+.kitchen-main img { aspect-ratio: 1.15; }
+.kitchen-detail { margin-top: 48px !important; }
+.kitchen-detail img { aspect-ratio: .74; }
+.kitchen-spec img { aspect-ratio: .74; object-position: left center; }
+.kitchen-gallery figcaption { border-bottom: 1px solid var(--soft-line); }
+
+.case-section--urbanism { position: relative; padding: 0; background: #fff; }
+.urbanism-title-block { position: relative; z-index: 2; display: grid; padding: 0 3.1vw; grid-template-columns: 21% 1.1fr .55fr; gap: 3.5vw; align-items: end; }
+.urbanism-title-block .case-kicker { grid-column: 1 / -1; }
+.urbanism-title-block h2 { padding: 97px 0 93px 12.5%; }
+.urbanism-title-block > p { max-width: 280px; padding-bottom: 99px; }
+.urbanism-map { position: relative; margin: 0; }
+.urbanism-map img { width: 100%; min-height: 520px; object-fit: cover; object-position: center; }
+.urbanism-map::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(238,233,223,.11), transparent 58%); content: ""; }
+.urbanism-map figcaption { position: absolute; z-index: 1; right: 3.1vw; bottom: 0; left: 3.1vw; color: var(--ink); }
+.urbanism-map figcaption span { color: var(--clay); }
+
+.case-section--backyard { padding: 0 3.1vw 105px; background: #fff; }
+.backyard-intro { display: grid; padding: 92px 11.5% 65px; grid-template-columns: 1.35fr .65fr; gap: 9vw; align-items: end; }
+.backyard-intro h2 { margin: 0; font-family: var(--serif); font-size: clamp(44px, 5vw, 83px); font-weight: 400; letter-spacing: -.057em; line-height: .89; }
+.backyard-intro h2 i { color: var(--ink); }
+.backyard-intro > p { max-width: 320px; margin: 0; font-size: 14px; line-height: 1.7; }
+.backyard-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5vw; align-items: stretch; }
+.backyard-drawing { margin: 0; padding: 20px 20px 0; background: #f7f4ed; }
+.backyard-drawing img { width: 100%; aspect-ratio: 1.41; object-fit: contain; }
+.backyard-drawing figcaption, .backyard-mood figcaption { display: flex; padding: 11px 0 18px; justify-content: space-between; font-family: var(--mono); font-size: 9px; letter-spacing: .045em; }
+.backyard-drawing figcaption span { color: var(--clay); }
+.backyard-materials { display: grid; padding-top: 21px; grid-template-columns: .67fr 1.33fr; gap: 1.3vw; align-items: end; }
+.backyard-material-copy { padding: 0 0 27px 0; }
+.backyard-material-copy h3 { margin: 0 0 21px; font-family: var(--serif); font-size: clamp(29px, 3.2vw, 51px); font-weight: 400; letter-spacing: -.045em; line-height: .95; }
+.backyard-material-copy h3 i { color: var(--ink); }
+.backyard-material-copy p { margin: 0; font-size: 12px; line-height: 1.62; }
+.backyard-mood { margin: 0; }
+.backyard-mood img { width: 100%; background: #fff; }
+
+.case-section--market { padding: 0 3.1vw 0; background: #fff; }
+.market-intro { display: grid; padding: 94px 11.5% 74px; grid-template-columns: 1.4fr .6fr; gap: 9vw; align-items: end; }
+.market-intro h2 i { color: var(--ink); }
+.market-showcase { display: grid; grid-template-columns: 1.27fr .73fr; gap: 3.5vw; align-items: stretch; }
+.market-photo { position: relative; margin: 0; background: #8d694e; }
+.market-photo img { width: 100%; height: 100%; min-height: 560px; object-fit: cover; }
+.market-photo figcaption { position: absolute; right: 15px; bottom: 0; left: 15px; color: #fffdf9; }
+.market-application { display: grid; padding: 30px 0 0; grid-template-columns: .8fr 1.2fr; gap: 8px; align-items: end; }
+.market-copy { align-self: center; padding: 0 0 45px 5px; }
+.case-label { display: block; margin-bottom: 17px; color: var(--clay); font-family: var(--mono); font-size: 9px; letter-spacing: .07em; text-transform: uppercase; }
+.market-copy h3 { margin: 0 0 22px; font-family: var(--serif); font-size: clamp(29px, 3vw, 51px); font-weight: 400; letter-spacing: -.045em; line-height: .95; }
+.market-copy p { font-size: 13px; line-height: 1.6; }
+.market-rule { display: block; width: 44px; height: 3px; margin-top: 28px; background: var(--clay); }
+.app-image { align-self: end; margin: 0; overflow: hidden; padding: 12px 12px 0; border: 1px solid var(--soft-line); background: #fff; }
+.app-image img { width: 100%; height: auto; transform: translateY(4px); }
+.app-image figcaption { display: flex; padding: 10px 0 12px; justify-content: space-between; font-family: var(--mono); font-size: 8px; letter-spacing: .035em; }
+.app-image figcaption span { color: var(--clay); }
+
+.process-section { display: grid; padding: 124px 10.6vw; grid-template-columns: .93fr 1.07fr; gap: 9vw; background: #fff; align-items: center; }
+.process-section figure { margin: 0; }
+.process-section figure img { width: 100%; aspect-ratio: 1.07; object-fit: cover; }
+.process-copy { max-width: 560px; }
+.process-copy .section-index { margin-bottom: 48px; }
+.process-copy h2 { margin-bottom: 29px; }
+.process-copy h2 i { color: var(--ink); }
+
+.profile-section { display: grid; padding: 130px 12.7vw 0; grid-template-columns: .9fr .74fr; gap: 13.5vw; align-items: end; background: #fff; }
+.profile-copy { padding-bottom: 115px; }
+.profile-copy h2 { margin-bottom: 32px; }
+.profile-copy h2 i { color: var(--ink); }
+.profile-copy > p:not(.profile-small) { max-width: 380px; }
+.profile-small { max-width: 280px; margin-top: 46px !important; font-family: var(--mono); font-size: 10px !important; line-height: 1.62 !important; }
+.portrait-frame { position: relative; margin: 0; align-self: end; }
+.portrait-frame::before { position: absolute; top: -17px; right: -17px; width: 43%; height: 35%; border-top: 1px solid var(--clay); border-right: 1px solid var(--clay); content: ""; }
+.portrait-frame img { width: 100%; height: min(700px, 58vw); object-fit: cover; object-position: 47% 48%; filter: saturate(.85); }
+.portrait-frame figcaption { padding-bottom: 22px; }
+
+.site-footer { padding: 0 3.1vw 23px; background: #fff; color: var(--ink); }
+.footer-top { border-color: var(--soft-line); }
+.footer-top span:first-child { color: var(--clay); }
+.footer-main { display: flex; padding: 121px 11.5% 120px; align-items: flex-end; justify-content: space-between; gap: 20px; }
+.footer-main h2 { max-width: 810px; font-size: clamp(48px, 7vw, 116px); }
+.footer-main h2 i { color: var(--ink); }
+.footer-action { display: flex; padding: 16px 0 9px; align-items: center; gap: 11px; border-bottom: 1px solid var(--clay); color: var(--clay); font-size: 14px; font-weight: 600; white-space: nowrap; transition: gap 180ms var(--ease-out); }
+.footer-action:hover { gap: 16px; }
+.footer-bottom { display: grid; padding-top: 17px; grid-template-columns: 1fr 1fr auto; border-top: 1px solid var(--soft-line); font-family: var(--mono); font-size: 8px; letter-spacing: .03em; }
+.footer-bottom button { color: var(--clay); font-family: var(--mono); font-size: 8px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-up { animation: reveal-up 700ms var(--ease-out) both; }
+  .reveal-right { animation: reveal-right 780ms 80ms var(--ease-out) both; }
+}
+@keyframes reveal-up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes reveal-right { from { opacity: 0; transform: translateX(35px); } to { opacity: 1; transform: translateX(0); } }
+
+@media (max-width: 980px) {
+  .hero-section { min-height: 780px; grid-template-columns: .9fr 1.1fr; gap: 4vw; }
+  .hero-copy h1 { font-size: clamp(64px, 9vw, 105px); }
+  .statement-section { padding-right: 7vw; padding-left: 7vw; grid-template-columns: 110px 1fr; }
+  .statement-image--one { width: 31%; }
+  .statement-image--two { right: 24%; }
+  .archive-heading { grid-template-columns: .55fr 1.5fr .8fr; }
+  .project-cards { grid-template-columns: repeat(2, 1fr); }
+  .project-card { min-height: 430px; }
+  .case-intro, .kitchen-header, .market-intro { padding-right: 7%; padding-left: 7%; }
+  .drawing-rack { grid-template-columns: repeat(2, 1fr); }
+  .urbanism-title-block { grid-template-columns: .45fr 1.2fr .65fr; }
+  .profile-section { padding-right: 8vw; padding-left: 8vw; gap: 7vw; }
+}
+
+@media (max-width: 680px) {
+  .topbar { height: 65px; padding: 0 20px; }
+  .topbar--scrolled { height: 60px; }
+  .desktop-nav { display: none; }
+  .menu-trigger span { display: none; }
+  .hero-section { display: flex; min-height: auto; padding: 108px 20px 70px; flex-direction: column; align-items: stretch; gap: 47px; }
+  .hero-section::before { background-size: 52px 52px; background-position: 20px 0; }
+  .hero-copy h1 { margin-bottom: 26px; font-size: clamp(66px, 21vw, 102px); }
+  .hero-copy-bottom { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .hero-copy-bottom p { max-width: 270px; }
+  .hero-image { min-height: 360px; }
+  .hero-image-wrap::before { top: -10px; right: -10px; }
+  .hero-rail { display: none; }
+  .scroll-cue { bottom: 23px; left: 20px; }
+  .hero-gridline--one { left: 26%; }
+  .hero-gridline--two { right: 20px; height: 12%; }
+  .statement-section { display: block; padding: 83px 20px 328px; }
+  .statement-section .section-index { margin-bottom: 48px; }
+  .statement-lead { font-size: clamp(37px, 10.8vw, 58px); }
+  .statement-body { margin: 0; }
+  .statement-image--one { right: 0; bottom: 0; width: 63%; height: 270px; }
+  .statement-image--two { top: auto; right: 54%; bottom: 170px; width: 36%; height: 155px; }
+  .statement-section::after { top: auto; right: 16px; bottom: 25px; width: 92px; height: 92px; }
+  .archive-section { padding: 80px 20px; }
+  .archive-heading { display: block; margin-bottom: 40px; }
+  .archive-heading .section-index { margin-bottom: 40px; }
+  .archive-heading h2 { font-size: clamp(47px, 14vw, 68px); }
+  .archive-note { margin-top: 23px; }
+  .project-cards { grid-template-columns: 1fr; }
+  .project-card { min-height: 380px; }
+  .project-card-image { height: 305px; }
+  .project-filing { font-size: 6.5px; }
+  .case-section--building { padding: 0 20px 75px; }
+  .case-kicker, .market-topline, .footer-top { grid-template-columns: 42px 1fr; gap: 7px; }
+  .case-kicker span:last-child, .market-topline span:last-child, .footer-top span:last-child { display: none; }
+  .case-intro, .kitchen-header, .market-intro { display: block; padding: 69px 0 47px; }
+  .case-intro h2, .kitchen-header h2, .urbanism-title-block h2, .market-intro h2, .process-copy h2, .profile-copy h2 { font-size: clamp(45px, 14vw, 65px); }
+  .case-intro p, .kitchen-header > p, .urbanism-title-block > p, .market-intro > p { margin-top: 27px; }
+  .drawing-feature { padding: 0; }
+  .drawing-rack { margin: 39px 0 0; grid-template-columns: 1fr; gap: 23px; }
+  .drawing-rack img { aspect-ratio: 1.54; }
+  .case-section--kitchen { padding: 0 20px 70px; }
+  .kitchen-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .kitchen-main { grid-column: 1 / -1; }
+  .kitchen-main img { aspect-ratio: 1.25; }
+  .kitchen-detail { margin-top: 0 !important; }
+  .kitchen-detail img, .kitchen-spec img { aspect-ratio: .85; }
+  .case-section--urbanism { padding: 0; }
+  .urbanism-title-block { display: block; padding: 0 20px; }
+  .urbanism-title-block .case-kicker { display: grid; }
+  .urbanism-title-block h2 { padding: 66px 0 28px; }
+  .urbanism-title-block > p { padding-bottom: 50px; }
+  .urbanism-map img { min-height: 390px; object-position: 36% center; }
+  .urbanism-map figcaption { right: 20px; left: 20px; color: var(--ink); }
+  .case-section--backyard { padding: 0 20px 65px; }
+  .backyard-intro { display: block; padding: 69px 0 47px; }
+  .backyard-intro > p { margin-top: 27px; }
+  .backyard-layout { display: block; }
+  .backyard-drawing { padding: 11px 11px 0; }
+  .backyard-materials { display: grid; padding-top: 25px; grid-template-columns: .72fr 1.28fr; gap: 10px; }
+  .backyard-material-copy { padding-bottom: 15px; }
+  .backyard-material-copy h3 { font-size: 27px; }
+  .backyard-material-copy p { font-size: 11px; }
+  .case-section--market { padding: 0 20px; }
+  .market-showcase { display: block; }
+  .market-photo img { min-height: 390px; }
+  .market-application { display: grid; padding-top: 24px; grid-template-columns: .7fr 1.3fr; }
+  .market-copy { padding-bottom: 22px; }
+  .market-copy h3 { font-size: 27px; }
+  .market-copy p { font-size: 11px; }
+  .app-image img { min-height: 300px; object-fit: contain; object-position: bottom; }
+  .process-section { display: flex; padding: 80px 20px; flex-direction: column-reverse; gap: 47px; align-items: stretch; }
+  .process-copy .section-index { margin-bottom: 32px; }
+  .profile-section { display: flex; padding: 82px 20px 0; flex-direction: column; gap: 20px; }
+  .profile-copy { padding-bottom: 15px; }
+  .profile-small { margin-top: 30px !important; }
+  .portrait-frame { width: 84%; margin-left: auto; }
+  .portrait-frame img { height: 500px; }
+  .site-footer { padding: 0 20px 18px; }
+  .footer-main { display: block; padding: 80px 0; }
+  .footer-main h2 { margin-bottom: 37px; font-size: clamp(49px, 14.2vw, 72px); }
+  .footer-bottom { grid-template-columns: 1fr auto; gap: 14px; line-height: 1.5; }
+  .footer-bottom span:nth-child(2) { display: none; }
+}
+
+/* Minimalismo extremo: una superficie blanca, sin retícula ornamental y con contenido organizado como fichas. */
+.topbar { height: 64px; border-bottom: 1px solid var(--soft-line); background: rgba(255,255,255,.96); }
+.topbar--scrolled { height: 64px; box-shadow: none; }
+.brand-monogram { width: 38px; height: 38px; flex-basis: 38px; }
+.brand-monogram::before, .brand-monogram::after { width: 25px; height: 27px; }
+.brand-monogram::before { background: var(--ink); }
+.brand-monogram::after { background: var(--clay); }
+.brand-monogram > span { top: 13px; left: 13px; width: 12px; height: 12px; }
+.brand-lockup b { font-size: 11px; }
+.brand-lockup em { font-size: 7px; }
+.hero-section { min-height: 700px; padding: 118px 7vw 68px; grid-template-columns: minmax(280px,.72fr) minmax(350px,1fr); gap: clamp(44px, 9vw, 150px); }
+.hero-section::before, .hero-gridline, .hero-rail, .scroll-cue, .statement-section::after, .hero-image-wrap::before, .portrait-frame::before, .urbanism-map::after { display: none; }
+.hero-copy h1 { max-width: 630px; margin-bottom: 26px; font-size: clamp(58px, 7.1vw, 114px); letter-spacing: -.075em; line-height: .82; }
+.statement-lead em, .archive-heading h2 i, .case-intro h2 i, .kitchen-header h2 i, .urbanism-title-block h2 i, .backyard-intro h2 i, .backyard-material-copy h3 i, .market-intro h2 i, .process-copy h2 i, .profile-copy h2 i, .footer-main h2 i { color: var(--ink); }
+.hero-copy-bottom { display: block; }
+.hero-copy-bottom p { max-width: 260px; margin-bottom: 22px; }
+.hero-image { min-height: 400px; filter: saturate(.72); }
+.hero-image-wrap figcaption { padding-top: 9px; border-top: 1px solid var(--soft-line); }
+.statement-section { min-height: 470px; padding: 105px 7vw 100px; grid-template-columns: 110px minmax(400px, 700px); }
+.statement-lead { max-width: 700px; margin-bottom: 27px; font-size: clamp(35px, 4vw, 60px); }
+.statement-body { max-width: 340px; margin: 0; }
+.statement-image { display: none; }
+.archive-section { padding: 92px 7vw; }
+.archive-heading { margin-bottom: 46px; grid-template-columns: 110px minmax(420px, 1fr) 220px; gap: 4vw; }
+.archive-heading h2 { font-size: clamp(42px, 4.5vw, 70px); }
+.project-cards { display: block; border: 0; background: transparent; }
+.project-card { display: grid; min-height: 144px; grid-template-columns: 56px minmax(220px,1fr) 240px 44px; grid-template-rows: 144px; border-top: 1px solid var(--soft-line); background: #fff; }
+.project-card:last-child { border-bottom: 1px solid var(--soft-line); }
+.project-card-image { grid-column: 3; grid-row: 1; height: auto; }
+.project-card-image::after { display: none; }
+.project-card-image img { filter: saturate(.75); }
+.project-card-meta { display: contents; }
+.project-number { display: flex; padding-top: 20px; grid-column: 1; grid-row: 1; justify-content: flex-start; font-size: 9px; }
+.project-card-meta > div { display: flex; padding: 19px 24px 17px 0; grid-column: 2; grid-row: 1; flex-direction: column; justify-content: space-between; }
+.project-card-meta h3 { margin: 0; font-size: 28px; }
+.project-card-meta p { max-width: 260px; font-size: 9px; }
+.project-filing { margin-top: 13px; font-size: 7px; }
+.project-arrow { padding-top: 20px; grid-column: 4; grid-row: 1; }
+.project-arrow svg:first-child { display: none; }
+.case-section--building, .case-section--kitchen, .case-section--backyard, .case-section--market { padding-right: 7vw; padding-left: 7vw; }
+.case-intro, .kitchen-header, .backyard-intro, .market-intro { padding-right: 0; padding-left: 0; }
+.drawing-rack { margin-right: 0; margin-left: 0; }
+.case-section--urbanism .urbanism-title-block { padding-right: 7vw; padding-left: 7vw; }
+.process-section { display: none; }
+.profile-section { padding: 100px 7vw 0; gap: 9vw; }
+.profile-copy { padding-bottom: 86px; }
+.profile-copy h2 { font-size: clamp(44px, 5vw, 76px); }
+.portrait-frame { padding: 10px 10px 0; border: 1px solid var(--soft-line); }
+.portrait-frame img { filter: grayscale(1) contrast(1.07); }
+.portrait-frame figcaption { padding-bottom: 12px; border-top: 1px solid var(--soft-line); }
+.site-footer { padding-right: 7vw; padding-left: 7vw; }
+.footer-main { padding-right: 0; padding-left: 0; }
+
+@media (max-width: 680px) {
+  .topbar { height: 58px; }
+  .topbar--scrolled { height: 58px; }
+  .brand-monogram { width: 31px; height: 31px; flex-basis: 31px; }
+  .brand-monogram::before, .brand-monogram::after { width: 21px; height: 22px; }
+  .brand-monogram > span { top: 10px; left: 10px; width: 10px; height: 10px; }
+  .hero-section { min-height: auto; padding: 95px 20px 53px; gap: 34px; }
+  .hero-copy h1 { font-size: clamp(55px, 17.2vw, 80px); }
+  .hero-image { min-height: 260px; }
+  .statement-section { min-height: auto; padding: 76px 20px 78px; }
+  .statement-section .section-index { margin-bottom: 32px; }
+  .archive-section { padding: 72px 20px; }
+  .archive-heading .section-index { margin-bottom: 26px; }
+  .project-card { min-height: 112px; grid-template-columns: 32px minmax(130px,1fr) 104px 22px; grid-template-rows: 112px; }
+  .project-card-image { grid-column: 3; }
+  .project-number, .project-arrow { padding-top: 14px; font-size: 8px; }
+  .project-card-meta > div { padding: 13px 10px 11px 0; }
+  .project-card-meta h3 { font-size: 20px; }
+  .project-card-meta p { font-size: 7px; line-height: 1.35; }
+  .project-filing { margin-top: 8px; font-size: 5.5px; }
+  .case-section--building, .case-section--kitchen, .case-section--backyard, .case-section--market { padding-right: 20px; padding-left: 20px; }
+  .case-section--urbanism .urbanism-title-block { padding-right: 20px; padding-left: 20px; }
+  .profile-section { padding: 78px 20px 0; }
+  .profile-copy { padding-bottom: 7px; }
+  .site-footer { padding-right: 20px; padding-left: 20px; }
+}
