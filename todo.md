@@ -1,5 +1,8 @@
 # Pendientes del portafolio
 
+- [x] Corregir la navegación, el índice y la escala de proyectos en móvil.
+- [x] Ajustar la lectura de láminas e imágenes para pantallas de celular.
+- [x] Verificar la experiencia móvil en una pantalla de referencia de 390 px.
 - [x] Rediseñar el índice de proyectos con fichas amplias, imágenes visibles y áreas de clic cómodas.
 - [x] Verificar que la selección de proyectos no se vea comprimida en escritorio ni móvil.
 - [x] Comparar la versión pública en computador con la composición esperada.
