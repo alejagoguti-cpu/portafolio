@@ -905,3 +905,82 @@ a:active {
   .footer-main { padding: 60px 0; }
   .footer-main h2 { max-width: 330px; font-size: 39px; line-height: .95; }
 }
+
+/* Movimiento: el archivo aparece por capas y las piezas visuales responden sin distraer del contenido. */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready [data-reveal-item] {
+    opacity: 0;
+    transform: translateY(20px) scale(.988);
+    transition: opacity 520ms var(--ease-out) var(--reveal-delay, 0ms), transform 520ms var(--ease-out) var(--reveal-delay, 0ms);
+  }
+
+  .motion-ready [data-reveal-item].is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .hero-image-wrap::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 28%, rgba(255,255,255,.26) 48%, transparent 66%);
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-42%);
+  }
+
+  .hero-image-wrap:hover::after {
+    opacity: 1;
+    transform: translateX(42%);
+    transition: opacity 180ms var(--ease-out), transform 700ms var(--ease-out);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .brand-lockup, .menu-trigger, .desktop-nav button, .text-link, .footer-action {
+    transition: color 180ms var(--ease-out), transform 180ms var(--ease-out), opacity 180ms var(--ease-out);
+  }
+
+  .brand-lockup:hover { transform: translateY(-1px); }
+  .brand-lockup:hover .brand-monogram { transform: rotate(-4deg); }
+  .brand-monogram { transition: transform 260ms var(--ease-out); }
+  .desktop-nav button:hover, .menu-trigger:hover { transform: translateY(-1px); }
+  .text-link:hover, .footer-action:hover { transform: translateX(3px); }
+
+  .drawing-sheet, .kitchen-gallery figure, .backyard-mood, .app-image {
+    transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out);
+  }
+
+  .drawing-sheet:hover, .kitchen-gallery figure:hover, .backyard-mood:hover, .app-image:hover {
+    box-shadow: 0 12px 22px rgba(31,31,29,.08);
+    transform: translateY(-3px);
+  }
+
+  .drawing-sheet img, .kitchen-gallery figure img, .backyard-mood img, .app-image img {
+    transition: transform 460ms var(--ease-out), filter 240ms var(--ease-out);
+  }
+
+  .drawing-sheet:hover img, .kitchen-gallery figure:hover img, .backyard-mood:hover img, .app-image:hover img {
+    filter: saturate(1.03);
+    transform: scale(1.02);
+  }
+}
+
+/* Firma editorial: el monograma opera como sello de autoría y los títulos alternan escala según el expediente. */
+@media (min-width: 981px) {
+  .brand-monogram { width: 62px; height: 62px; flex-basis: 62px; }
+  .brand-monogram::before, .brand-monogram::after { width: 40px; height: 44px; }
+  .brand-monogram > span { top: 22px; left: 22px; width: 18px; height: 18px; }
+  .brand-lockup b { font-size: 14px; letter-spacing: .1em; }
+  .brand-lockup em { font-size: 7px; letter-spacing: .2em; }
+  .case-section--building .case-intro h2 { font-size: clamp(54px, 5vw, 84px); }
+  .case-section--kitchen .kitchen-header h2 { font-size: clamp(44px, 3.8vw, 64px); }
+  .case-section--backyard .backyard-intro h2 { font-size: clamp(46px, 4.2vw, 70px); }
+  .case-section--tierra .tierra-intro h2 { max-width: 680px; font-size: clamp(42px, 3.7vw, 61px); }
+  .case-section--market .market-intro h2 { font-size: clamp(50px, 4.6vw, 76px); }
+}
+
+@media (max-width: 680px) {
+  .case-section--building .case-intro h2 { font-size: 39px; }
+  .case-section--kitchen .kitchen-header h2, .case-section--tierra .tierra-intro h2 { font-size: 33px; }
+}

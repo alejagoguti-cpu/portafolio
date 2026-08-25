@@ -109,7 +109,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const targets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const targets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-item]"));
     if (targets.length === 0) return;
 
     document.documentElement.classList.add("motion-ready");
@@ -126,7 +126,7 @@ export default function Home() {
     );
 
     targets.forEach((target, index) => {
-      target.style.setProperty("--reveal-delay", `${Math.min(index % 3, 2) * 55}ms`);
+      target.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 48}ms`);
       observer.observe(target);
     });
 
@@ -223,7 +223,7 @@ export default function Home() {
             {projectCards.map((project, index) => {
               const Icon = project.icon;
               return (
-                <button className={`project-card project-card--${index + 1}`} key={project.code} onClick={() => scrollTo(project.target)}>
+                <button className={`project-card project-card--${index + 1}`} key={project.code} onClick={() => scrollTo(project.target)} data-reveal-item>
                   <div className="project-card-image"><img src={project.image} alt={project.name} /></div>
                   <div className="project-card-meta">
                     <span className="project-number">{project.code}</span>
@@ -242,12 +242,12 @@ export default function Home() {
             <h2>Una arquitectura que se <i>lee</i> en planta, sección y fachada.</h2>
             <p>Desarrollo de un proyecto de edificaciones presentado como un sistema coherente: implantación, estacionamientos, plantas tipo, cortes y fachada. La claridad técnica acompaña una lectura espacial de conjunto.</p>
           </div>
-          <figure className="drawing-feature">
+          <figure className="drawing-feature" data-reveal-item>
             <img src={assets.buildingMain} alt="Lámina técnica con localización, sótano y volumetría del proyecto de edificaciones" />
             <figcaption><span>A-001</span> Localización y sótano <b>1:75</b></figcaption>
           </figure>
           <div className="drawing-archive-label"><span>Archivo técnico</span><span>Plantas / cortes / fachadas</span></div>
-          <div className="drawing-rack">
+          <div className="drawing-rack" data-reveal-item>
             <figure className="drawing-sheet"><img src={assets.buildingPlanOne} alt="Plantas de primer piso y pisos tipo" /><figcaption><span>A-002</span> Plantas</figcaption></figure>
             <figure className="drawing-sheet"><img src={assets.buildingPlanTwo} alt="Plantas de niveles superiores" /><figcaption><span>A-003</span> Pisos tipo</figcaption></figure>
             <figure className="drawing-sheet"><img src={assets.buildingSection} alt="Cortes longitudinal y transversal" /><figcaption><span>A-004</span> Cortes</figcaption></figure>
@@ -261,7 +261,7 @@ export default function Home() {
             <div><p className="eyebrow eyebrow--light"><span /> Espacio gastronómico</p><h2>El detalle cotidiano,<br /><i>llevado a escala.</i></h2></div>
             <p>Un interior gastronómico articulado por altura, luz natural y superficies de trabajo. La propuesta reúne materialidad, equipamiento y una atmósfera doméstica de gran presencia espacial.</p>
           </div>
-          <div className="kitchen-gallery">
+          <div className="kitchen-gallery" data-reveal-item>
             <figure className="kitchen-main"><img src={assets.kitchenRenderOne} alt="Render de cocina con isla y gran altura" /><figcaption>Vista principal / render de interior</figcaption></figure>
             <figure className="kitchen-detail"><img src={assets.kitchenRenderTwo} alt="Render de cocina con grandes ventanas verticales" /><figcaption>Luz, altura y material</figcaption></figure>
             <figure className="kitchen-spec"><img src={assets.kitchenSpecs} alt="Especificación de zona de lavado y productos" /><figcaption>Zona de lavado / especificaciones</figcaption></figure>
@@ -274,7 +274,7 @@ export default function Home() {
             <div><p className="eyebrow"><span /> Intervención de vivienda</p><h2>Transformar lo existente para <i>volver a habitar.</i></h2></div>
             <p>Una remodelación que comienza con el diagnóstico de la preexistencia y se desarrolla desde la demolición, la nueva organización espacial y una materialidad cálida de piedra, madera y metal.</p>
           </div>
-          <div className="backyard-layout">
+          <div className="backyard-layout" data-reveal-item>
             <figure className="backyard-drawing"><img src={assets.backyardPlan} alt="Planta, sección y axonometría de Project Backyard" /><figcaption><span>A-002</span> Demolición, planta, sección y vista axonométrica</figcaption></figure>
             <div className="backyard-materials">
               <div className="backyard-material-copy"><span className="case-label">Moodboard de materialidad</span><h3>Grano, textura<br />y luz <i>clara.</i></h3><p>Una paleta doméstica de madera oscura y clara, piedra natural, superficies blancas y accesorios metálicos para dar continuidad entre función y atmósfera.</p></div>
@@ -289,9 +289,9 @@ export default function Home() {
             <div><p className="eyebrow"><span /> Branding de restaurante</p><h2>Una identidad que acompaña el <i>recorrido.</i></h2></div>
             <p>Tierra Mía reúne remodelación, levantamiento arquitectónico e identidad aplicada. El proyecto articula espacio, acceso, servicio, empaques y movilidad en una experiencia cercana y reconocible.</p>
           </div>
-          <figure className="tierra-plan"><img src={assets.tierraPlan} alt="Planimetría y axonometría de remodelación Gastro-Bar para Tierra Mía" /><figcaption><span>TM-A022</span> Levantamiento arquitectónico / remodelación Gastro-Bar</figcaption></figure>
-          <figure className="tierra-facade"><img src={assets.tierraFacade} alt="Fachada intervenida con identidad visual de Tierra Mía" /><figcaption><span>TM-00</span> Fachada / marca, horario e identidad espacial</figcaption></figure>
-          <div className="tierra-grid">
+          <figure className="tierra-plan" data-reveal-item><img src={assets.tierraPlan} alt="Planimetría y axonometría de remodelación Gastro-Bar para Tierra Mía" /><figcaption><span>TM-A022</span> Levantamiento arquitectónico / remodelación Gastro-Bar</figcaption></figure>
+          <figure className="tierra-facade" data-reveal-item><img src={assets.tierraFacade} alt="Fachada intervenida con identidad visual de Tierra Mía" /><figcaption><span>TM-00</span> Fachada / marca, horario e identidad espacial</figcaption></figure>
+          <div className="tierra-grid" data-reveal-item>
             <figure className="tierra-card tierra-card--access"><img src={assets.tierraAccess} alt="Tapete de acceso con identidad Tierra Mía" /><figcaption><span>TM-01</span> Acceso / bienvenida</figcaption></figure>
             <figure className="tierra-card"><img src={assets.tierraPackaging} alt="Portavasos y empaque Tierra Mía" /><figcaption><span>TM-02</span> Servicio / empaque</figcaption></figure>
             <figure className="tierra-card"><img src={assets.tierraMobility} alt="Mochila de reparto con identidad Tierra Mía" /><figcaption><span>TM-03</span> Movilidad / visibilidad</figcaption></figure>
@@ -301,10 +301,10 @@ export default function Home() {
         <section id="new-covent" className="case-section case-section--market" data-reveal>
           <div className="market-topline"><span>05</span><span>New Covent Garden Market</span><span>Identidad y experiencia digital</span></div>
           <div className="market-intro">
-            <div><p className="eyebrow"><span /> Caso integrado</p><h2>Una marca que<br />ocupa la <i>ciudad.</i></h2></div>
+            <div><p className="eyebrow"><span /> Caso integrado · Identidad + UX</p><h2>Una marca que<br />ocupa la <i>ciudad.</i></h2></div>
             <p>Un caso que conecta branding a gran escala con diseño de interfaz: la identidad acompaña desde la llegada al mercado hasta la compra de producto en una aplicación móvil.</p>
           </div>
-          <div className="market-showcase">
+          <div className="market-showcase" data-reveal-item>
             <figure className="market-photo"><img src={assets.market} alt="Branding de gran escala en New Covent Garden Market" /><figcaption>Branding a gran escala / acceso a New Covent Garden Market</figcaption></figure>
             <div className="market-application">
               <div className="market-copy"><span className="case-label">Diseño de aplicación</span><h3>La misma experiencia,<br />en la mano.</h3><p>Una interfaz móvil enfocada en catálogo, favoritos y compra rápida de producto fresco.</p><span className="market-rule" /></div>
@@ -330,7 +330,7 @@ export default function Home() {
             <p>He participado en la remodelación de un jardín en España y en el desarrollo de un restaurante de comida típica, aportando al diseño espacial, el branding del local y el levantamiento arquitectónico.</p>
             <p className="profile-small">Me encanta la tecnología y exploro cómo las herramientas digitales, la experiencia de usuario y la arquitectura contemporánea pueden encontrarse en un mismo proyecto.</p>
           </div>
-          <figure className="portrait-frame"><img src={assets.portrait} alt="Retrato de la autora del portafolio" /><figcaption><span>Retrato / 2026</span><span>Arquitectura &amp; Diseño</span></figcaption></figure>
+          <figure className="portrait-frame" data-reveal-item><img src={assets.portrait} alt="Retrato de la autora del portafolio" /><figcaption><span>Retrato / 2026</span><span>Arquitectura &amp; Diseño</span></figcaption></figure>
         </section>
       </main>
 

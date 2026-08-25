@@ -1,5 +1,8 @@
 # Pendientes del portafolio
 
+- [x] Añadir animaciones de entrada suaves a las secciones principales.
+- [x] Añadir microinteracciones a tarjetas, imágenes y navegación.
+- [x] Verificar reducción de movimiento y rendimiento en móvil.
 - [x] Corregir la navegación, el índice y la escala de proyectos en móvil.
 - [x] Ajustar la lectura de láminas e imágenes para pantallas de celular.
 - [x] Verificar la experiencia móvil en una pantalla de referencia de 390 px.
