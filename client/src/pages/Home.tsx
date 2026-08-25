@@ -309,7 +309,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="project-cards">
+          <div className="project-cards project-cards--filtered" key={activeFilter} aria-live="polite">
             {filteredProjects.map((project, index) => {
               const Icon = project.icon;
               return (

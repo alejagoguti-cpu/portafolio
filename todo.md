@@ -55,3 +55,5 @@
 - [x] Verificar el filtrado de tarjetas en la publicación móvil de GitHub Pages.
 - [x] Simplificar el índice móvil para eliminar espacios vacíos y mostrar el resultado filtrado en el mismo bloque visual.
 - [x] Comprobar la composición final con el tamaño de pantalla compartido por la usuaria.
+- [x] Añadir una transición de resultados breve y continua al cambiar de filtro.
+- [x] Reducir la altura y densidad visual de los controles de filtro en móvil.
