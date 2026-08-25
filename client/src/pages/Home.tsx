@@ -354,8 +354,8 @@ export default function Home() {
           </div>
           <div className="kitchen-gallery" data-reveal-item>
             <figure className="kitchen-main" {...zoomableProps({ src: assets.kitchenRenderOne, alt: "Render de cocina con isla y gran altura", label: "Cocina / Vista principal" })}><img src={assets.kitchenRenderOne} alt="Render de cocina con isla y gran altura" /><figcaption>Vista principal / render de interior <Expand size={13} /></figcaption></figure>
-            <figure className="kitchen-detail"><img src={assets.kitchenRenderTwo} alt="Render de cocina con grandes ventanas verticales" /><figcaption>Luz, altura y material</figcaption></figure>
-            <figure className="kitchen-spec"><img src={assets.kitchenSpecs} alt="Especificación de zona de lavado y productos" /><figcaption>Zona de lavado / especificaciones</figcaption></figure>
+            <figure className="kitchen-detail" {...zoomableProps({ src: assets.kitchenRenderTwo, alt: "Render de cocina con grandes ventanas verticales", label: "Cocina / Luz, altura y material" })}><img src={assets.kitchenRenderTwo} alt="Render de cocina con grandes ventanas verticales" /><figcaption>Luz, altura y material <Expand size={13} /></figcaption></figure>
+            <figure className="kitchen-spec" {...zoomableProps({ src: assets.kitchenSpecs, alt: "Especificación de zona de lavado y productos", label: "Cocina / Zona de lavado" })}><img src={assets.kitchenSpecs} alt="Especificación de zona de lavado y productos" /><figcaption>Zona de lavado / especificaciones <Expand size={13} /></figcaption></figure>
           </div>
         </section>
 
@@ -369,7 +369,7 @@ export default function Home() {
             <figure className="backyard-drawing" {...zoomableProps({ src: assets.backyardPlan, alt: "Planta, sección y axonometría de Project Backyard", label: "Project Backyard / Planimetría" })}><img src={assets.backyardPlan} alt="Planta, sección y axonometría de Project Backyard" /><figcaption><span>A-002</span> Demolición, planta, sección y vista axonométrica <Expand size={13} /></figcaption></figure>
             <div className="backyard-materials">
               <div className="backyard-material-copy"><span className="case-label">Moodboard de materialidad</span><h3>Grano, textura<br />y luz <i>clara.</i></h3><p>Una paleta doméstica de madera oscura y clara, piedra natural, superficies blancas y accesorios metálicos para dar continuidad entre función y atmósfera.</p></div>
-              <figure className="backyard-mood"><img src={assets.backyardMood} alt="Moodboard de madera, piedra, sanitarios y grifería para Project Backyard" /><figcaption>Referencias de acabado / Project Backyard</figcaption></figure>
+              <figure className="backyard-mood" {...zoomableProps({ src: assets.backyardMood, alt: "Moodboard de madera, piedra, sanitarios y grifería para Project Backyard", label: "Project Backyard / Referencias de acabado" })}><img src={assets.backyardMood} alt="Moodboard de madera, piedra, sanitarios y grifería para Project Backyard" /><figcaption>Referencias de acabado / Project Backyard <Expand size={13} /></figcaption></figure>
             </div>
           </div>
         </section>
@@ -383,9 +383,9 @@ export default function Home() {
           <figure className="tierra-plan" data-reveal-item {...zoomableProps({ src: assets.tierraPlan, alt: "Planimetría y axonometría de remodelación Gastro-Bar para Tierra Mía", label: "Tierra Mía / Levantamiento arquitectónico" })}><img src={assets.tierraPlan} alt="Planimetría y axonometría de remodelación Gastro-Bar para Tierra Mía" /><figcaption><span>TM-A022</span> Levantamiento arquitectónico / remodelación Gastro-Bar <Expand size={13} /></figcaption></figure>
           <figure className="tierra-facade" data-reveal-item {...zoomableProps({ src: assets.tierraFacade, alt: "Fachada intervenida con identidad visual de Tierra Mía", label: "Tierra Mía / Fachada e identidad espacial" })}><img src={assets.tierraFacade} alt="Fachada intervenida con identidad visual de Tierra Mía" /><figcaption><span>TM-00</span> Fachada / marca, horario e identidad espacial <Expand size={13} /></figcaption></figure>
           <div className="tierra-grid" data-reveal-item>
-            <figure className="tierra-card tierra-card--access"><img src={assets.tierraAccess} alt="Tapete de acceso con identidad Tierra Mía" /><figcaption><span>TM-01</span> Acceso / bienvenida</figcaption></figure>
-            <figure className="tierra-card"><img src={assets.tierraPackaging} alt="Portavasos y empaque Tierra Mía" /><figcaption><span>TM-02</span> Servicio / empaque</figcaption></figure>
-            <figure className="tierra-card"><img src={assets.tierraMobility} alt="Mochila de reparto con identidad Tierra Mía" /><figcaption><span>TM-03</span> Movilidad / visibilidad</figcaption></figure>
+            <figure className="tierra-card tierra-card--access" {...zoomableProps({ src: assets.tierraAccess, alt: "Tapete de acceso con identidad Tierra Mía", label: "Tierra Mía / Acceso y bienvenida" })}><img src={assets.tierraAccess} alt="Tapete de acceso con identidad Tierra Mía" /><figcaption><span>TM-01</span> Acceso / bienvenida <Expand size={13} /></figcaption></figure>
+            <figure className="tierra-card" {...zoomableProps({ src: assets.tierraPackaging, alt: "Portavasos y empaque Tierra Mía", label: "Tierra Mía / Servicio y empaque" })}><img src={assets.tierraPackaging} alt="Portavasos y empaque Tierra Mía" /><figcaption><span>TM-02</span> Servicio / empaque <Expand size={13} /></figcaption></figure>
+            <figure className="tierra-card" {...zoomableProps({ src: assets.tierraMobility, alt: "Mochila de reparto con identidad Tierra Mía", label: "Tierra Mía / Movilidad y visibilidad" })}><img src={assets.tierraMobility} alt="Mochila de reparto con identidad Tierra Mía" /><figcaption><span>TM-03</span> Movilidad / visibilidad <Expand size={13} /></figcaption></figure>
           </div>
         </section>
 
@@ -399,7 +399,7 @@ export default function Home() {
             <figure className="market-photo" {...zoomableProps({ src: assets.market, alt: "Branding de gran escala en New Covent Garden Market", label: "New Covent Garden Market / Branding urbano" })}><img src={assets.market} alt="Branding de gran escala en New Covent Garden Market" /><figcaption>Branding a gran escala / acceso a New Covent Garden Market <Expand size={13} /></figcaption></figure>
             <div className="market-application">
               <div className="market-copy"><span className="case-label">Diseño de aplicación</span><h3>La misma experiencia,<br />en la mano.</h3><p>Una interfaz móvil enfocada en catálogo, favoritos y compra rápida de producto fresco.</p><span className="market-rule" /></div>
-              <figure className="app-image"><img src={assets.app} alt="Diseño de aplicación móvil para productos frescos" /><figcaption><span>A-05.2</span> Flujo de compra y selección de producto</figcaption></figure>
+              <figure className="app-image" {...zoomableProps({ src: assets.app, alt: "Diseño de aplicación móvil para productos frescos", label: "New Covent Garden Market / Flujo de compra" })}><img src={assets.app} alt="Diseño de aplicación móvil para productos frescos" /><figcaption><span>A-05.2</span> Flujo de compra y selección de producto <Expand size={13} /></figcaption></figure>
             </div>
           </div>
         </section>

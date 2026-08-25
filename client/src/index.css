@@ -997,8 +997,8 @@ a:active {
 .case-section--active { animation: archive-focus 820ms var(--ease-out); }
 
 [role="button"]:focus-visible, .project-filters button:focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; }
-.drawing-feature[role="button"], .drawing-sheet[role="button"], .kitchen-main[role="button"], .backyard-drawing[role="button"], .tierra-plan[role="button"], .tierra-facade[role="button"], .market-photo[role="button"] { cursor: zoom-in; }
-.drawing-sheet figcaption svg, .kitchen-main figcaption svg, .backyard-drawing figcaption svg, .tierra-plan figcaption svg, .tierra-facade figcaption svg, .market-photo figcaption svg { margin-left: auto; opacity: .65; }
+.drawing-feature[role="button"], .drawing-sheet[role="button"], .kitchen-main[role="button"], .kitchen-detail[role="button"], .kitchen-spec[role="button"], .backyard-drawing[role="button"], .backyard-mood[role="button"], .tierra-plan[role="button"], .tierra-facade[role="button"], .tierra-card[role="button"], .market-photo[role="button"], .app-image[role="button"] { cursor: zoom-in; }
+.drawing-sheet figcaption svg, .kitchen-main figcaption svg, .kitchen-detail figcaption svg, .kitchen-spec figcaption svg, .backyard-drawing figcaption svg, .backyard-mood figcaption svg, .tierra-plan figcaption svg, .tierra-facade figcaption svg, .tierra-card figcaption svg, .market-photo figcaption svg, .app-image figcaption svg { margin-left: auto; opacity: .65; }
 
 .site-loader { position: fixed; z-index: 90; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #fff; color: var(--ink); font-family: var(--mono); font-size: 9px; letter-spacing: .15em; }
 .site-loader-mark { position: relative; display: block; width: 44px; height: 44px; }
