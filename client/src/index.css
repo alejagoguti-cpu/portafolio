@@ -451,3 +451,102 @@ img { display: block; max-width: 100%; }
   .profile-copy { padding-bottom: 7px; }
   .site-footer { padding-right: 20px; padding-left: 20px; }
 }
+
+/* Depuración silenciosa: menos énfasis, menos texto y una imagen dominante por capítulo. */
+.topbar { border-bottom-color: rgba(31,31,29,.1); }
+.brand-monogram { width: 46px; height: 46px; flex-basis: 46px; }
+.brand-monogram::before, .brand-monogram::after { width: 30px; height: 33px; }
+.brand-monogram > span { top: 16px; left: 16px; width: 14px; height: 14px; }
+.brand-lockup b { font-size: 12px; letter-spacing: .07em; }
+.brand-lockup em { font-size: 7px; letter-spacing: .15em; }
+.hero-section { min-height: 650px; padding-top: 104px; padding-bottom: 52px; grid-template-columns: minmax(300px,.9fr) minmax(390px,1.1fr); gap: clamp(44px, 8vw, 120px); }
+.hero-copy h1 { max-width: 570px; margin-bottom: 18px; font-size: clamp(54px, 6vw, 92px); letter-spacing: -.065em; line-height: .9; }
+.hero-copy h1 i { color: var(--clay); font-style: normal; }
+.eyebrow { margin-bottom: 14px; font-size: 8px; }
+.hero-copy-bottom p { font-size: 12px; line-height: 1.5; }
+.text-link--accent { color: var(--ink); }
+.text-link { padding-bottom: 3px; border-bottom: 1px solid var(--ink); font-size: 10px; }
+.hero-image { min-height: 330px; }
+.statement-section { min-height: 0; padding-top: 72px; padding-bottom: 72px; }
+.statement-section .section-index { display: none; }
+.statement-lead { max-width: 620px; margin-bottom: 16px; font-size: clamp(29px, 3.1vw, 46px); line-height: 1.03; }
+.statement-lead em { color: var(--ink); }
+.statement-body { max-width: 430px; font-size: 12px; line-height: 1.6; }
+.archive-section { padding-top: 68px; padding-bottom: 68px; }
+.archive-heading { margin-bottom: 30px; grid-template-columns: 1fr; gap: 16px; }
+.archive-heading .section-index, .archive-heading .eyebrow, .archive-note { display: none; }
+.archive-heading h2 { font-size: clamp(33px, 3.5vw, 52px); }
+.archive-heading h2 i { color: var(--ink); }
+.project-card { min-height: 102px; grid-template-columns: 52px minmax(160px,1fr) 148px; grid-template-rows: 102px; }
+.project-card-image { grid-column: 3; }
+.project-number { position: relative; padding-top: 16px; font-size: 9px; }
+.project-number::after { position: absolute; top: 16px; right: 12px; width: 16px; height: 1px; background: var(--clay); content: ""; }
+.project-card-meta > div { padding: 15px 12px 14px 0; grid-column: 2; justify-content: center; }
+.project-card-meta h3 { font-family: var(--sans); font-size: 15px; font-weight: 500; letter-spacing: -.02em; line-height: 1.1; }
+.project-card-meta p { display: block; margin-top: 5px; color: var(--ink); font-family: var(--mono); font-size: 7px; letter-spacing: .035em; opacity: .62; text-transform: uppercase; }
+.project-filing, .project-arrow { display: none; }
+.case-kicker, .market-topline, .footer-top { padding: 12px 0; grid-template-columns: 50px 1fr; font-size: 8px; }
+.case-kicker span:last-child, .market-topline span:last-child, .footer-top span:last-child { display: none; }
+.case-intro, .kitchen-header, .backyard-intro, .market-intro, .tierra-intro { padding-top: 54px; padding-bottom: 30px; grid-template-columns: 1fr; gap: 14px; }
+.case-intro h2, .kitchen-header h2, .urbanism-title-block h2, .backyard-intro h2, .market-intro h2, .tierra-intro h2, .profile-copy h2, .footer-main h2 { max-width: 620px; font-size: clamp(33px, 3.5vw, 52px); letter-spacing: -.05em; line-height: .96; }
+.case-intro p, .kitchen-header > p, .urbanism-title-block > p, .backyard-intro > p, .market-intro > p, .tierra-intro > p, .profile-copy > p { max-width: 380px; font-size: 12px; line-height: 1.6; }
+.case-intro h2 i, .kitchen-header h2 i, .urbanism-title-block h2 i, .backyard-intro h2 i, .market-intro h2 i, .tierra-intro h2 i, .profile-copy h2 i, .footer-main h2 i { color: var(--ink); font-style: normal; }
+.case-kicker span:first-child, .market-topline span:first-child, .footer-top span:first-child { position: relative; padding-left: 22px; }
+.case-kicker span:first-child::before, .market-topline span:first-child::before, .footer-top span:first-child::before { position: absolute; top: 50%; left: 0; width: 13px; height: 1px; background: var(--clay); content: ""; }
+.drawing-rack { display: none; }
+.drawing-feature { padding: 0; }
+.drawing-feature figcaption, .kitchen-gallery figcaption, .urbanism-map figcaption, .tierra-facade figcaption, .tierra-card figcaption, .market-photo figcaption, .portrait-frame figcaption { padding-top: 8px; padding-bottom: 10px; font-size: 7px; }
+.case-section--building, .case-section--kitchen, .case-section--backyard, .case-section--tierra, .case-section--market { padding-bottom: 68px; }
+.kitchen-header { padding-top: 54px; }
+.kitchen-gallery { display: block; }
+.kitchen-detail, .kitchen-spec { display: none !important; }
+.kitchen-main img { aspect-ratio: 1.55; }
+.urbanism-title-block { padding-top: 0; }
+.urbanism-title-block h2 { padding: 54px 0 20px; }
+.urbanism-title-block > p { padding-bottom: 28px; }
+.urbanism-map img { min-height: 390px; }
+.backyard-layout { grid-template-columns: 1fr; }
+.backyard-materials { display: none; }
+.tierra-facade { margin-bottom: 18px; }
+.tierra-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.tierra-card img { aspect-ratio: 1; }
+.tierra-card figcaption { display: none; }
+.market-showcase { grid-template-columns: 1fr; }
+.market-photo img { min-height: 390px; }
+.market-application { display: none; }
+.drawing-feature, .kitchen-main, .urbanism-map, .backyard-drawing, .tierra-facade, .market-photo { border-top: 1px solid rgba(31,31,29,.14); }
+.profile-section { padding-top: 68px; grid-template-columns: 1fr .7fr; }
+.profile-copy { padding-bottom: 34px; }
+.profile-copy .eyebrow { margin-bottom: 12px; }
+.profile-copy > p:nth-of-type(2) { display: none; }
+.profile-small { margin-top: 20px !important; font-size: 8px !important; }
+.portrait-frame img { height: min(520px, 47vw); }
+.footer-main { padding-top: 70px; padding-bottom: 70px; }
+.footer-main h2 { font-size: clamp(35px, 4.8vw, 68px); }
+.footer-action { font-size: 11px; }
+
+@media (max-width: 680px) {
+  .hero-section { padding-top: 86px; padding-bottom: 40px; gap: 26px; }
+  .brand-monogram { width: 35px; height: 35px; flex-basis: 35px; }
+  .brand-monogram::before, .brand-monogram::after { width: 23px; height: 25px; }
+  .brand-monogram > span { top: 12px; left: 12px; width: 11px; height: 11px; }
+  .hero-copy h1 { font-size: clamp(46px, 13.7vw, 66px); }
+  .hero-image { min-height: 235px; }
+  .statement-section { padding-top: 55px; padding-bottom: 55px; }
+  .statement-lead { font-size: 29px; }
+  .archive-section { padding-top: 55px; padding-bottom: 55px; }
+  .project-card { min-height: 84px; grid-template-columns: 36px minmax(120px,1fr) 94px; grid-template-rows: 84px; }
+  .project-number { padding-top: 12px; font-size: 7px; }
+  .project-number::after { top: 12px; right: 8px; width: 10px; }
+  .project-card-meta > div { padding: 12px 9px 10px 0; }
+  .project-card-meta h3 { font-size: 12px; }
+  .project-card-meta p { margin-top: 4px; font-size: 5.5px; }
+  .case-intro, .kitchen-header, .backyard-intro, .market-intro, .tierra-intro { padding-top: 42px; padding-bottom: 24px; }
+  .case-intro h2, .kitchen-header h2, .urbanism-title-block h2, .backyard-intro h2, .market-intro h2, .tierra-intro h2, .profile-copy h2 { font-size: 31px; }
+  .urbanism-title-block h2 { padding-top: 42px; }
+  .tierra-grid { gap: 5px; }
+  .market-photo img { min-height: 270px; }
+  .profile-section { padding-top: 56px; grid-template-columns: 1fr; }
+  .portrait-frame { width: 64%; }
+  .portrait-frame img { height: 390px; }
+}

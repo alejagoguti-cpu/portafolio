@@ -83,3 +83,11 @@ El perfil debe comunicar una práctica emergente y multidisciplinar: Alejandra G
 La composición se reduce a blanco, grafito y una única señal arcilla. Se retiran la retícula de fondo, los marcos ornamentales, las imágenes flotantes, los rieles de lectura y cualquier bloque cromático que compita con los proyectos. La portada conserva una sola imagen aportada por Alejandra y una declaración clara. El archivo de obras se transforma en una lista de fichas: código, nombre, alcance, escala y una miniatura precisa. El resultado debe sentirse como una hoja de trabajo muy limpia, donde cada imagen y cada palabra tiene una función.
 
 La señal arcilla queda reservada para la acción principal, los códigos y la firma de marca; la cursiva conserva su peso tipográfico, pero vuelve al grafito en los capítulos para que no compita con los documentos de proyecto. El retrato se trata como una lámina de archivo monocromática, con borde y pie técnico sobrio.
+
+### Depuración adicional
+
+La siguiente versión elimina toda repetición visual: los grandes titulares se reducen, las descripciones se condensan a una frase por sección, las fichas de proyecto muestran solo número, nombre y una imagen principal. Los casos de estudio se convierten en secuencias de una imagen dominante y leyenda corta, sin subdivisiones superfluas. La página prioriza pausas, líneas finas y la lectura del material visual enviado por Alejandra.
+
+### Ajustes de firma y archivo
+
+Cada bloque debe mostrar una identificación editorial legible: número, categoría breve y leyenda técnica bajo una misma regla. El monograma de dos planos desplazados gana presencia en la cabecera como firma arquitectónica, mientras el rojo arcilla aparece una vez por bloque importante —en código, línea de archivo o acción— para conservar su carácter de señal exacta.
