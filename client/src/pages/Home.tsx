@@ -248,7 +248,11 @@ export default function Home() {
           <button className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Cerrar vista ampliada"><X size={22} /></button>
           <div className="lightbox-content" onClick={(event) => event.stopPropagation()}>
             <img src={lightbox.src} alt={lightbox.alt} />
-            <p><span>Vista ampliada</span>{lightbox.label}</p>
+            <div className="lightbox-caption">
+              <p className="lightbox-caption__eyebrow">Vista ampliada</p>
+              <h2>{lightbox.label}</h2>
+              <p className="lightbox-caption__description">{lightbox.alt}</p>
+            </div>
           </div>
         </div>
       )}

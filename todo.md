@@ -62,3 +62,5 @@
 - [x] Validar la carga de imágenes en una vista móvil pública con las rutas versionadas.
 - [x] Extender el lightbox a las imágenes de detalle y aplicaciones de todos los proyectos.
 - [x] Verificar la apertura y cierre del lightbox desde móvil y escritorio.
+- [x] Añadir títulos y descripciones breves a todas las imágenes en la vista ampliada.
+- [x] Verificar la legibilidad de las leyendas del lightbox en móvil y escritorio.
