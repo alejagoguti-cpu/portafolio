@@ -199,6 +199,10 @@ img { display: block; max-width: 100%; }
 .tierra-intro { display: grid; padding: 92px 0 58px; grid-template-columns: 1.35fr .65fr; gap: 9vw; align-items: end; }
 .tierra-intro h2 { margin: 0; font-family: var(--serif); font-size: clamp(44px, 5vw, 83px); font-weight: 400; letter-spacing: -.057em; line-height: .89; }
 .tierra-intro > p { max-width: 330px; margin: 0; font-size: 14px; line-height: 1.7; }
+.tierra-plan { margin: 0 0 22px; padding: 14px 14px 0; border-top: 1px solid rgba(31,31,29,.14); background: #fff; }
+.tierra-plan img { display: block; width: 100%; aspect-ratio: 1.72; object-fit: contain; }
+.tierra-plan figcaption { display: flex; padding: 10px 0 13px; justify-content: space-between; border-top: 1px solid var(--soft-line); font-family: var(--mono); font-size: 8px; letter-spacing: .04em; }
+.tierra-plan figcaption span { color: var(--clay); }
 .tierra-facade { margin: 0 0 36px; }
 .tierra-facade img { width: 100%; aspect-ratio: 2.35; object-fit: cover; object-position: center; filter: saturate(.88); }
 .tierra-facade figcaption { display: flex; padding: 10px 0 13px; justify-content: space-between; border-bottom: 1px solid var(--soft-line); font-family: var(--mono); font-size: 8px; letter-spacing: .04em; }
@@ -346,6 +350,8 @@ img { display: block; max-width: 100%; }
   .case-section--tierra { padding: 0 20px 65px; }
   .tierra-intro { display: block; padding: 69px 0 40px; }
   .tierra-intro > p { margin-top: 27px; }
+  .tierra-plan { margin-bottom: 18px; padding: 9px 9px 0; }
+  .tierra-plan img { aspect-ratio: 1.12; }
   .tierra-facade { margin-bottom: 25px; }
   .tierra-facade img { aspect-ratio: 1.42; }
   .tierra-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -454,14 +460,14 @@ img { display: block; max-width: 100%; }
 
 /* Depuración silenciosa: menos énfasis, menos texto y una imagen dominante por capítulo. */
 .topbar { border-bottom-color: rgba(31,31,29,.1); }
-.brand-monogram { width: 46px; height: 46px; flex-basis: 46px; }
-.brand-monogram::before, .brand-monogram::after { width: 30px; height: 33px; }
-.brand-monogram > span { top: 16px; left: 16px; width: 14px; height: 14px; }
-.brand-lockup b { font-size: 12px; letter-spacing: .07em; }
-.brand-lockup em { font-size: 7px; letter-spacing: .15em; }
+.brand-monogram { width: 54px; height: 54px; flex-basis: 54px; }
+.brand-monogram::before, .brand-monogram::after { width: 35px; height: 38px; }
+.brand-monogram > span { top: 19px; left: 19px; width: 16px; height: 16px; }
+.brand-lockup b { font-size: 13px; letter-spacing: .08em; }
+.brand-lockup em { font-size: 7px; letter-spacing: .17em; }
 .hero-section { min-height: 650px; padding-top: 104px; padding-bottom: 52px; grid-template-columns: minmax(300px,.9fr) minmax(390px,1.1fr); gap: clamp(44px, 8vw, 120px); }
 .hero-copy h1 { max-width: 570px; margin-bottom: 18px; font-size: clamp(54px, 6vw, 92px); letter-spacing: -.065em; line-height: .9; }
-.hero-copy h1 i { color: var(--clay); font-style: normal; }
+.hero-copy h1 i { color: var(--ink); font-style: normal; }
 .eyebrow { margin-bottom: 14px; font-size: 8px; }
 .hero-copy-bottom p { font-size: 12px; line-height: 1.5; }
 .text-link--accent { color: var(--ink); }
@@ -477,13 +483,13 @@ img { display: block; max-width: 100%; }
 .archive-heading .section-index, .archive-heading .eyebrow, .archive-note { display: none; }
 .archive-heading h2 { font-size: clamp(33px, 3.5vw, 52px); }
 .archive-heading h2 i { color: var(--ink); }
-.project-card { min-height: 102px; grid-template-columns: 52px minmax(160px,1fr) 148px; grid-template-rows: 102px; }
+.project-card { min-height: 116px; grid-template-columns: 58px minmax(180px,1fr) 174px; grid-template-rows: 116px; }
 .project-card-image { grid-column: 3; }
-.project-number { position: relative; padding-top: 16px; font-size: 9px; }
-.project-number::after { position: absolute; top: 16px; right: 12px; width: 16px; height: 1px; background: var(--clay); content: ""; }
-.project-card-meta > div { padding: 15px 12px 14px 0; grid-column: 2; justify-content: center; }
-.project-card-meta h3 { font-family: var(--sans); font-size: 15px; font-weight: 500; letter-spacing: -.02em; line-height: 1.1; }
-.project-card-meta p { display: block; margin-top: 5px; color: var(--ink); font-family: var(--mono); font-size: 7px; letter-spacing: .035em; opacity: .62; text-transform: uppercase; }
+.project-number { position: relative; padding-top: 18px; font-size: 10px; }
+.project-number::after { position: absolute; top: 18px; right: 13px; width: 19px; height: 1px; background: var(--clay); content: ""; }
+.project-card-meta > div { padding: 17px 14px 16px 0; grid-column: 2; justify-content: center; }
+.project-card-meta h3 { font-family: var(--sans); font-size: 17px; font-weight: 500; letter-spacing: -.025em; line-height: 1.1; }
+.project-card-meta p { display: block; margin-top: 6px; color: var(--ink); font-family: var(--mono); font-size: 7px; letter-spacing: .045em; opacity: .68; text-transform: uppercase; }
 .project-filing, .project-arrow { display: none; }
 .case-kicker, .market-topline, .footer-top { padding: 12px 0; grid-template-columns: 50px 1fr; font-size: 8px; }
 .case-kicker span:last-child, .market-topline span:last-child, .footer-top span:last-child { display: none; }
@@ -514,7 +520,7 @@ img { display: block; max-width: 100%; }
 .market-showcase { grid-template-columns: 1fr; }
 .market-photo img { min-height: 390px; }
 .market-application { display: none; }
-.drawing-feature, .kitchen-main, .urbanism-map, .backyard-drawing, .tierra-facade, .market-photo { border-top: 1px solid rgba(31,31,29,.14); }
+.drawing-feature, .kitchen-main, .urbanism-map, .backyard-drawing, .tierra-plan, .tierra-facade, .market-photo { border-top: 1px solid rgba(31,31,29,.14); }
 .profile-section { padding-top: 68px; grid-template-columns: 1fr .7fr; }
 .profile-copy { padding-bottom: 34px; }
 .profile-copy .eyebrow { margin-bottom: 12px; }
@@ -527,19 +533,19 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 680px) {
   .hero-section { padding-top: 86px; padding-bottom: 40px; gap: 26px; }
-  .brand-monogram { width: 35px; height: 35px; flex-basis: 35px; }
-  .brand-monogram::before, .brand-monogram::after { width: 23px; height: 25px; }
-  .brand-monogram > span { top: 12px; left: 12px; width: 11px; height: 11px; }
+  .brand-monogram { width: 40px; height: 40px; flex-basis: 40px; }
+  .brand-monogram::before, .brand-monogram::after { width: 26px; height: 29px; }
+  .brand-monogram > span { top: 14px; left: 14px; width: 12px; height: 12px; }
   .hero-copy h1 { font-size: clamp(46px, 13.7vw, 66px); }
   .hero-image { min-height: 235px; }
   .statement-section { padding-top: 55px; padding-bottom: 55px; }
   .statement-lead { font-size: 29px; }
   .archive-section { padding-top: 55px; padding-bottom: 55px; }
-  .project-card { min-height: 84px; grid-template-columns: 36px minmax(120px,1fr) 94px; grid-template-rows: 84px; }
-  .project-number { padding-top: 12px; font-size: 7px; }
-  .project-number::after { top: 12px; right: 8px; width: 10px; }
-  .project-card-meta > div { padding: 12px 9px 10px 0; }
-  .project-card-meta h3 { font-size: 12px; }
+  .project-card { min-height: 90px; grid-template-columns: 38px minmax(120px,1fr) 102px; grid-template-rows: 90px; }
+  .project-number { padding-top: 13px; font-size: 7px; }
+  .project-number::after { top: 13px; right: 8px; width: 11px; }
+  .project-card-meta > div { padding: 13px 9px 11px 0; }
+  .project-card-meta h3 { font-size: 13px; }
   .project-card-meta p { margin-top: 4px; font-size: 5.5px; }
   .case-intro, .kitchen-header, .backyard-intro, .market-intro, .tierra-intro { padding-top: 42px; padding-bottom: 24px; }
   .case-intro h2, .kitchen-header h2, .urbanism-title-block h2, .backyard-intro h2, .market-intro h2, .tierra-intro h2, .profile-copy h2 { font-size: 31px; }
@@ -584,6 +590,7 @@ img { display: block; max-width: 100%; }
   .kitchen-main,
   .urbanism-map,
   .backyard-drawing,
+  .tierra-plan,
   .tierra-facade,
   .tierra-card,
   .market-photo,
@@ -595,6 +602,7 @@ img { display: block; max-width: 100%; }
   .kitchen-main img,
   .urbanism-map img,
   .backyard-drawing img,
+  .tierra-plan img,
   .tierra-facade img,
   .tierra-card img,
   .market-photo img,
@@ -606,6 +614,7 @@ img { display: block; max-width: 100%; }
   .kitchen-main:hover,
   .urbanism-map:hover,
   .backyard-drawing:hover,
+  .tierra-plan:hover,
   .tierra-facade:hover,
   .tierra-card:hover,
   .market-photo:hover,
@@ -618,6 +627,7 @@ img { display: block; max-width: 100%; }
   .kitchen-main:hover img,
   .urbanism-map:hover img,
   .backyard-drawing:hover img,
+  .tierra-plan:hover img,
   .tierra-facade:hover img,
   .tierra-card:hover img,
   .market-photo:hover img,
@@ -641,4 +651,26 @@ a:active {
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* Archivo técnico: las láminas de Edificaciones se presentan completas, no como miniaturas decorativas. */
+.drawing-archive-label { display: flex; padding: 28px 0 9px; justify-content: space-between; border-bottom: 1px solid var(--soft-line); font-family: var(--mono); font-size: 8px; letter-spacing: .055em; text-transform: uppercase; }
+.drawing-archive-label span:first-child { color: var(--clay); }
+.case-section--building .drawing-rack { display: grid; margin: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border-bottom: 1px solid var(--soft-line); background: var(--soft-line); }
+.case-section--building .drawing-sheet { min-width: 0; margin: 0; padding: 13px 13px 0; overflow: hidden; background: #fff; }
+.drawing-sheet img { display: block; width: 100%; aspect-ratio: 1.42; object-fit: contain; transition: transform 360ms var(--ease-out); }
+.drawing-sheet figcaption { display: flex; padding: 10px 0 12px; justify-content: space-between; border-top: 1px solid var(--soft-line); font-family: var(--mono); font-size: 8px; letter-spacing: .04em; }
+.drawing-sheet figcaption span { color: var(--clay); }
+
+@media (hover: hover) and (pointer: fine) {
+  .drawing-sheet { transition: background-color 220ms var(--ease-out); }
+  .drawing-sheet:hover { background: #fcfcfb; }
+  .drawing-sheet:hover img { transform: scale(1.015); }
+}
+
+@media (max-width: 680px) {
+  .drawing-archive-label { padding-top: 22px; font-size: 7px; }
+  .case-section--building .drawing-rack { grid-template-columns: 1fr; }
+  .case-section--building .drawing-sheet { padding: 9px 9px 0; }
+  .drawing-sheet figcaption { padding: 8px 0 10px; font-size: 7px; }
 }

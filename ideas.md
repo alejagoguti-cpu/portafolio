@@ -92,6 +92,10 @@ La siguiente versión elimina toda repetición visual: los grandes titulares se 
 
 Cada bloque debe mostrar una identificación editorial legible: número, categoría breve y leyenda técnica bajo una misma regla. El monograma de dos planos desplazados gana presencia en la cabecera como firma arquitectónica, mientras el rojo arcilla aparece una vez por bloque importante —en código, línea de archivo o acción— para conservar su carácter de señal exacta.
 
+## Style Decisions
+
+El índice se trata como un archivo y no como una galería: cada ficha prioriza código, nombre, categoría y una miniatura precisa bajo la misma escala. El monograma de dos planos desplazados funciona como firma visible de la práctica y vuelve solo como sello editorial. El arcilla se reserva para códigos, líneas de archivo y una acción puntual por bloque, nunca como decoración repetida.
+
 ### Movimiento e interacción
 
 Las secciones y documentos entran con una traslación vertical breve de 16 a 20 px y opacidad, entre 420 y 560 ms, usando una curva de salida precisa. Las imágenes responden al cursor con una elevación de 2 px y una ampliación máxima del 2 %, sin sombras densas ni cambios de color llamativos. Las fichas de proyecto muestran una transición de fondo casi imperceptible. Todo movimiento no esencial se desactiva para personas con preferencia de reducción de movimiento.

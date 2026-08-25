@@ -37,6 +37,7 @@ const assets = {
   tierraPackaging: projectAsset("tierra-mia-empaque.png", "/manus-storage/tierra-mia-empaque_72475af4.png"),
   tierraMobility: projectAsset("tierra-mia-movilidad.png", "/manus-storage/tierra-mia-movilidad_c661d5eb.png"),
   tierraFacade: projectAsset("tierra-mia-fachada.png", "/manus-storage/tierra-mia-fachada_9ac40ee1.png"),
+  tierraPlan: projectAsset("tierra-mia-planimetria.png", "/manus-storage/tierra-mia-planimetria_3ad7fc51.png"),
 };
 
 const projectCards = [
@@ -245,11 +246,12 @@ export default function Home() {
             <img src={assets.buildingMain} alt="Lámina técnica con localización, sótano y volumetría del proyecto de edificaciones" />
             <figcaption><span>A-001</span> Localización y sótano <b>1:75</b></figcaption>
           </figure>
+          <div className="drawing-archive-label"><span>Archivo técnico</span><span>Plantas / cortes / fachadas</span></div>
           <div className="drawing-rack">
-            <figure><img src={assets.buildingPlanOne} alt="Plantas de primer piso y pisos tipo" /><figcaption>Plantas / A-002</figcaption></figure>
-            <figure><img src={assets.buildingPlanTwo} alt="Plantas de niveles superiores" /><figcaption>Plantas / A-003</figcaption></figure>
-            <figure><img src={assets.buildingSection} alt="Cortes longitudinal y transversal" /><figcaption>Cortes / A-004</figcaption></figure>
-            <figure><img src={assets.buildingFacade} alt="Fachadas del proyecto de edificaciones" /><figcaption>Fachadas / A-005</figcaption></figure>
+            <figure className="drawing-sheet"><img src={assets.buildingPlanOne} alt="Plantas de primer piso y pisos tipo" /><figcaption><span>A-002</span> Plantas</figcaption></figure>
+            <figure className="drawing-sheet"><img src={assets.buildingPlanTwo} alt="Plantas de niveles superiores" /><figcaption><span>A-003</span> Pisos tipo</figcaption></figure>
+            <figure className="drawing-sheet"><img src={assets.buildingSection} alt="Cortes longitudinal y transversal" /><figcaption><span>A-004</span> Cortes</figcaption></figure>
+            <figure className="drawing-sheet"><img src={assets.buildingFacade} alt="Fachadas del proyecto de edificaciones" /><figcaption><span>A-005</span> Fachadas</figcaption></figure>
           </div>
         </section>
 
@@ -285,8 +287,9 @@ export default function Home() {
           <div className="case-kicker"><span>04</span><span>Tierra Mía</span><span>Restaurante e identidad aplicada</span></div>
           <div className="tierra-intro">
             <div><p className="eyebrow"><span /> Branding de restaurante</p><h2>Una identidad que acompaña el <i>recorrido.</i></h2></div>
-            <p>Tierra Mía es una propuesta de restaurante de comida típica donde la marca se expande más allá del logo: acceso, servicio, empaques y movilidad construyen una experiencia cercana, cálida y reconocible.</p>
+            <p>Tierra Mía reúne remodelación, levantamiento arquitectónico e identidad aplicada. El proyecto articula espacio, acceso, servicio, empaques y movilidad en una experiencia cercana y reconocible.</p>
           </div>
+          <figure className="tierra-plan"><img src={assets.tierraPlan} alt="Planimetría y axonometría de remodelación Gastro-Bar para Tierra Mía" /><figcaption><span>TM-A022</span> Levantamiento arquitectónico / remodelación Gastro-Bar</figcaption></figure>
           <figure className="tierra-facade"><img src={assets.tierraFacade} alt="Fachada intervenida con identidad visual de Tierra Mía" /><figcaption><span>TM-00</span> Fachada / marca, horario e identidad espacial</figcaption></figure>
           <div className="tierra-grid">
             <figure className="tierra-card tierra-card--access"><img src={assets.tierraAccess} alt="Tapete de acceso con identidad Tierra Mía" /><figcaption><span>TM-01</span> Acceso / bienvenida</figcaption></figure>

@@ -1,6 +1,11 @@
 # Pendientes del portafolio
 
-- [ ] Verificar las rutas públicas del portafolio y corregir el nuevo error 404 reportado.
+- [x] Revisar las planimetrías de cafetería/restaurante aportadas.
+- [x] Integrar las planimetrías en el caso Tierra Mía, manteniendo el moodboard en Project Backyard.
+- [x] Mostrar la planimetría de remodelación Gastro-Bar como levantamiento arquitectónico de Tierra Mía.
+- [x] Restaurar las láminas de localización, plantas, cortes y fachadas en el caso Edificaciones.
+- [ ] Verificar que las láminas aparezcan en la versión pública del proyecto.
+- [x] Verificar las rutas públicas del portafolio y corregir el nuevo error 404 reportado.
 - [x] Eliminar Urbanismo del índice y de la sección de casos.
 - [x] Renumerar los proyectos restantes y revisar la navegación.
 - [x] Añadir animaciones de entrada suaves al desplazarse por las secciones.
