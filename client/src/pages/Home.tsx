@@ -31,6 +31,9 @@ const assets = {
   app: "/manus-storage/app-experiencia-digital_f5990bda.png",
   backyardPlan: "/manus-storage/backyard-lamina_229c38d2.png",
   backyardMood: "/manus-storage/backyard-moodboard_31a2774f.png",
+  tierraAccess: "/manus-storage/tierra-mia-acceso_62fec537.png",
+  tierraPackaging: "/manus-storage/tierra-mia-empaque_72475af4.png",
+  tierraMobility: "/manus-storage/tierra-mia-movilidad_c661d5eb.png",
 };
 
 const projectCards = [
@@ -76,6 +79,16 @@ const projectCards = [
   },
   {
     code: "05",
+    name: "Tierra Mía",
+    discipline: "Restaurante · Identidad y branding",
+    scope: "Marca / puntos de contacto",
+    scale: "Espacio + servicio",
+    image: assets.tierraAccess,
+    target: "tierra-mia",
+    icon: PanelsTopLeft,
+  },
+  {
+    code: "06",
     name: "New Covent Garden Market",
     discipline: "Branding a gran escala · Experiencia digital",
     scope: "Mercado / identidad",
@@ -176,7 +189,7 @@ export default function Home() {
 
         <section id="obras" className="archive-section">
           <div className="archive-heading">
-            <div className="section-index"><span>01—05</span><i> / Archivo de obras</i></div>
+            <div className="section-index"><span>01—06</span><i> / Archivo de obras</i></div>
             <div>
               <p className="eyebrow"><span /> Selección</p>
               <h2>Proyectos en<br /><i>distintas escalas.</i></h2>
@@ -256,8 +269,21 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="tierra-mia" className="case-section case-section--tierra">
+          <div className="case-kicker"><span>05</span><span>Tierra Mía</span><span>Restaurante e identidad aplicada</span></div>
+          <div className="tierra-intro">
+            <div><p className="eyebrow"><span /> Branding de restaurante</p><h2>Una identidad que acompaña el <i>recorrido.</i></h2></div>
+            <p>Tierra Mía es una propuesta de restaurante de comida típica donde la marca se expande más allá del logo: acceso, servicio, empaques y movilidad construyen una experiencia cercana, cálida y reconocible.</p>
+          </div>
+          <div className="tierra-grid">
+            <figure className="tierra-card tierra-card--access"><img src={assets.tierraAccess} alt="Tapete de acceso con identidad Tierra Mía" /><figcaption><span>TM-01</span> Acceso / bienvenida</figcaption></figure>
+            <figure className="tierra-card"><img src={assets.tierraPackaging} alt="Portavasos y empaque Tierra Mía" /><figcaption><span>TM-02</span> Servicio / empaque</figcaption></figure>
+            <figure className="tierra-card"><img src={assets.tierraMobility} alt="Mochila de reparto con identidad Tierra Mía" /><figcaption><span>TM-03</span> Movilidad / visibilidad</figcaption></figure>
+          </div>
+        </section>
+
         <section id="new-covent" className="case-section case-section--market">
-          <div className="market-topline"><span>05</span><span>New Covent Garden Market</span><span>Identidad y experiencia digital</span></div>
+          <div className="market-topline"><span>06</span><span>New Covent Garden Market</span><span>Identidad y experiencia digital</span></div>
           <div className="market-intro">
             <div><p className="eyebrow"><span /> Caso integrado</p><h2>Una marca que<br />ocupa la <i>ciudad.</i></h2></div>
             <p>Un caso que conecta branding a gran escala con diseño de interfaz: la identidad acompaña desde la llegada al mercado hasta la compra de producto en una aplicación móvil.</p>
@@ -293,7 +319,7 @@ export default function Home() {
       </main>
 
       <footer id="contacto" className="site-footer">
-        <div className="footer-top"><span>06</span><span>Contacto</span><span>Colaboraciones, oportunidades y proyectos</span></div>
+        <div className="footer-top"><span>07</span><span>Contacto</span><span>Colaboraciones, oportunidades y proyectos</span></div>
         <div className="footer-main">
           <h2>Conversemos sobre<br /><i>el próximo espacio.</i></h2>
           <a className="footer-action" href="mailto:tu-correo@ejemplo.com">Escríbeme <ArrowUpRight size={23} /></a>

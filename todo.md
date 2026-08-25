@@ -1,5 +1,7 @@
 # Pendientes del portafolio
 
+- [x] Preparar y subir las imágenes aportadas del caso Tierra Mía.
+- [x] Añadir Tierra Mía al archivo de proyectos y crear su ficha de branding aplicado.
 - [x] Reducir la composición a un sistema visual más minimalista y con menos elementos decorativos.
 - [x] Sincronizar la versión final minimalista con el repositorio de GitHub conectado.
 - [x] Aplicar un fondo blanco y una estética minimalista al portafolio completo.
