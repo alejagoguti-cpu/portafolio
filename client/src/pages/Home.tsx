@@ -156,9 +156,22 @@ export default function Home() {
   const [lightboxImageLoading, setLightboxImageLoading] = useState(false);
   const [showLightboxThumbnails, setShowLightboxThumbnails] = useState(true);
   const [imageZoom, setImageZoom] = useState(1);
+  const [imageOffset, setImageOffset] = useState({ x: 0, y: 0 });
   const touchStartX = useRef<number | null>(null);
   const pinchStartDistance = useRef<number | null>(null);
   const pinchStartZoom = useRef(1);
+  const isPanning = useRef(false);
+  const panHasMoved = useRef(false);
+  const panStart = useRef({ x: 0, y: 0 });
+  const panStartOffset = useRef({ x: 0, y: 0 });
+  const lastTapTime = useRef(0);
+
+  const resetLightboxView = () => {
+    setImageZoom(1);
+    setImageOffset({ x: 0, y: 0 });
+    isPanning.current = false;
+    panHasMoved.current = false;
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -206,7 +219,7 @@ export default function Home() {
       if (event.key === "Escape") {
         setLightbox(null);
         setLightboxImageLoading(false);
-        setImageZoom(1);
+        resetLightboxView();
         return;
       }
       const projectImages = lightboxImages.filter((image) => image.project === lightbox.project);
@@ -214,13 +227,13 @@ export default function Home() {
       if (event.key === "ArrowLeft") {
         const previousIndex = (Math.max(currentIndex, 0) - 1 + projectImages.length) % projectImages.length;
         setLightboxImageLoading(true);
-        setImageZoom(1);
+        resetLightboxView();
         setLightbox(projectImages[previousIndex]);
       }
       if (event.key === "ArrowRight") {
         const nextIndex = (Math.max(currentIndex, 0) + 1) % projectImages.length;
         setLightboxImageLoading(true);
-        setImageZoom(1);
+        resetLightboxView();
         setLightbox(projectImages[nextIndex]);
       }
     };
@@ -246,7 +259,7 @@ export default function Home() {
       const preload = new Image();
       preload.src = image.src;
     });
-    setImageZoom(1);
+    resetLightboxView();
   }, [lightbox]);
 
   const navigate = (id: string) => {
@@ -268,7 +281,7 @@ export default function Home() {
     const detailedImage = lightboxImages.find((item) => item.src === image.src);
     setLightboxImageLoading(true);
     setShowLightboxThumbnails(true);
-    setImageZoom(1);
+    resetLightboxView();
     setLightbox(detailedImage ?? { ...image, project: "archivo", projectLabel: "Archivo", technical: { date: "Archivo 2026", scale: "No especificada", software: "AutoCAD · Revit" } });
   };
 
@@ -278,13 +291,21 @@ export default function Home() {
     if (!lightbox) return;
     const nextIndex = (Math.max(currentLightboxIndex, 0) + direction + currentProjectImages.length) % currentProjectImages.length;
     setLightboxImageLoading(true);
-    setImageZoom(1);
+    resetLightboxView();
     setLightbox(currentProjectImages[nextIndex]);
   };
 
   const handleLightboxTouchStart = (event: React.TouchEvent) => {
     touchStartX.current = event.touches[0]?.clientX ?? null;
+    if (event.touches.length === 1 && imageZoom > 1) {
+      isPanning.current = true;
+      panHasMoved.current = false;
+      panStart.current = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+      panStartOffset.current = imageOffset;
+    }
     if (event.touches.length === 2) {
+      isPanning.current = false;
+      panHasMoved.current = false;
       const [firstTouch, secondTouch] = [event.touches[0], event.touches[1]];
       pinchStartDistance.current = Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY);
       pinchStartZoom.current = imageZoom;
@@ -292,23 +313,46 @@ export default function Home() {
   };
 
   const handleLightboxTouchMove = (event: React.TouchEvent) => {
-    if (event.touches.length !== 2 || pinchStartDistance.current === null) return;
-    const [firstTouch, secondTouch] = [event.touches[0], event.touches[1]];
-    const currentDistance = Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY);
-    const nextZoom = Math.min(3, Math.max(1, pinchStartZoom.current * (currentDistance / pinchStartDistance.current)));
-    setImageZoom(nextZoom);
+    if (event.touches.length === 2 && pinchStartDistance.current !== null) {
+      const [firstTouch, secondTouch] = [event.touches[0], event.touches[1]];
+      const currentDistance = Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY);
+      const nextZoom = Math.min(3, Math.max(1, pinchStartZoom.current * (currentDistance / pinchStartDistance.current)));
+      setImageZoom(nextZoom);
+      return;
+    }
+    if (!isPanning.current || event.touches.length !== 1) return;
+    const limit = Math.min(260, 88 * (imageZoom - 1));
+    const nextX = panStartOffset.current.x + event.touches[0].clientX - panStart.current.x;
+    const nextY = panStartOffset.current.y + event.touches[0].clientY - panStart.current.y;
+    if (Math.abs(nextX - panStartOffset.current.x) > 2 || Math.abs(nextY - panStartOffset.current.y) > 2) panHasMoved.current = true;
+    setImageOffset({ x: Math.max(-limit, Math.min(limit, nextX)), y: Math.max(-limit, Math.min(limit, nextY)) });
   };
 
   const handleLightboxTouchEnd = (event: React.TouchEvent) => {
     if (event.touches.length < 2) pinchStartDistance.current = null;
     if (event.changedTouches.length > 1 || pinchStartZoom.current !== 1 && event.changedTouches.length === 1) {
+      isPanning.current = false;
+      panHasMoved.current = false;
       touchStartX.current = null;
       return;
     }
     if (touchStartX.current === null) return;
     const swipeDistance = event.changedTouches[0].clientX - touchStartX.current;
     touchStartX.current = null;
+    if (isPanning.current && panHasMoved.current) {
+      isPanning.current = false;
+      panHasMoved.current = false;
+      return;
+    }
+    isPanning.current = false;
     if (Math.abs(swipeDistance) < 18) {
+      const currentTime = Date.now();
+      if (currentTime - lastTapTime.current < 280) {
+        resetLightboxView();
+        lastTapTime.current = 0;
+        return;
+      }
+      lastTapTime.current = currentTime;
       if (!showLightboxThumbnails) setShowLightboxThumbnails(true);
       return;
     }
@@ -365,14 +409,14 @@ export default function Home() {
       </div>
 
       {lightbox && (
-        <div className="lightbox" role="dialog" aria-modal="true" aria-label={`Vista ampliada: ${lightbox.label}`} onClick={() => { setLightbox(null); setLightboxImageLoading(false); setImageZoom(1); }}>
-          <button className="lightbox-close" onClick={() => { setLightbox(null); setLightboxImageLoading(false); setImageZoom(1); }} aria-label="Cerrar vista ampliada"><X size={22} /></button>
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label={`Vista ampliada: ${lightbox.label}`} onClick={() => { setLightbox(null); setLightboxImageLoading(false); resetLightboxView(); }}>
+          <button className="lightbox-close" onClick={() => { setLightbox(null); setLightboxImageLoading(false); resetLightboxView(); }} aria-label="Cerrar vista ampliada"><X size={22} /></button>
           <button className="lightbox-nav lightbox-nav--previous" onClick={(event) => { event.stopPropagation(); navigateLightbox(-1); }} aria-label="Ver imagen anterior"><ChevronLeft size={24} /></button>
           <button className="lightbox-nav lightbox-nav--next" onClick={(event) => { event.stopPropagation(); navigateLightbox(1); }} aria-label="Ver imagen siguiente"><ChevronRight size={24} /></button>
-          <div className="lightbox-content" onClick={(event) => event.stopPropagation()} onTouchStart={handleLightboxTouchStart} onTouchMove={handleLightboxTouchMove} onTouchEnd={handleLightboxTouchEnd} onTouchCancel={() => { touchStartX.current = null; pinchStartDistance.current = null; }}>
+          <div className="lightbox-content" onClick={(event) => event.stopPropagation()} onTouchStart={handleLightboxTouchStart} onTouchMove={handleLightboxTouchMove} onTouchEnd={handleLightboxTouchEnd} onTouchCancel={() => { touchStartX.current = null; pinchStartDistance.current = null; isPanning.current = false; }}>
             <div className={`lightbox-image-frame ${lightboxImageLoading ? "lightbox-image-frame--loading" : ""} ${imageZoom > 1 ? "lightbox-image-frame--zoomed" : ""}`}>
               {lightboxImageLoading && <span className="lightbox-image-loader" role="status" aria-label="Cargando imagen en alta resolución" />}
-              <img src={lightbox.src} alt={lightbox.alt} style={{ transform: `scale(${imageZoom})` }} onLoad={() => setLightboxImageLoading(false)} onError={() => setLightboxImageLoading(false)} />
+              <img src={lightbox.src} alt={lightbox.alt} style={{ transform: `translate(${imageOffset.x}px, ${imageOffset.y}px) scale(${imageZoom})` }} onLoad={() => setLightboxImageLoading(false)} onError={() => setLightboxImageLoading(false)} />
             </div>
             <div className="lightbox-caption">
               <p className="lightbox-caption__eyebrow">{lightbox.projectLabel} · Vista ampliada</p>
@@ -389,7 +433,7 @@ export default function Home() {
                   <button
                     key={image.src}
                     className={`lightbox-thumbnail ${image.src === lightbox.src ? "lightbox-thumbnail--active" : ""}`}
-                    onClick={() => { setShowLightboxThumbnails(true); setLightboxImageLoading(true); setImageZoom(1); setLightbox(image); }}
+                    onClick={() => { setShowLightboxThumbnails(true); setLightboxImageLoading(true); resetLightboxView(); setLightbox(image); }}
                     aria-label={`Ver imagen ${index + 1} de ${currentProjectImages.length}: ${image.label}`}
                     aria-pressed={image.src === lightbox.src}
                   >

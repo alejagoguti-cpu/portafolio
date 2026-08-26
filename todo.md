@@ -79,3 +79,5 @@
 - [x] Precargar la imagen anterior y siguiente del proyecto activo en el lightbox.
 - [x] Mostrar de nuevo las miniaturas ocultas con un toque suave en móvil.
 - [x] Incorporar zoom por pellizco para inspeccionar imágenes ampliadas desde móvil.
+- [x] Permitir arrastrar una imagen ampliada para recorrer sus detalles sin cambiar de lámina.
+- [x] Añadir doble toque para restablecer rápidamente el zoom y la posición de la imagen.
