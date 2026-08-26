@@ -67,3 +67,6 @@
 - [x] Añadir una señal visual de ampliación al pasar el cursor por cada imagen interactiva.
 - [x] Incorporar controles de anterior y siguiente para recorrer imágenes dentro del lightbox.
 - [x] Integrar fecha, escala y software en las fichas técnicas de la vista ampliada.
+- [x] Actualizar el software técnico mostrado a AutoCAD y Revit.
+- [x] Limitar el contador y la navegación del lightbox a las imágenes del mismo proyecto.
+- [x] Añadir deslizamiento horizontal para navegar el lightbox en dispositivos móviles.
