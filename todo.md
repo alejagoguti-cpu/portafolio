@@ -76,3 +76,6 @@
 - [x] Ocultar las miniaturas móviles después de un deslizamiento horizontal.
 - [x] Mostrar un indicador de carga mientras se prepara cada imagen ampliada.
 - [x] Verificar atajos de flechas y Escape, carga y comportamiento móvil del lightbox.
+- [x] Precargar la imagen anterior y siguiente del proyecto activo en el lightbox.
+- [x] Mostrar de nuevo las miniaturas ocultas con un toque suave en móvil.
+- [x] Incorporar zoom por pellizco para inspeccionar imágenes ampliadas desde móvil.
