@@ -7,6 +7,7 @@ import {
   ArrowDownRight,
   ArrowUpRight,
   Building2,
+  ChevronLeft,
   ChevronRight,
   Expand,
   Menu,
@@ -112,7 +113,32 @@ type LightboxImage = {
   src: string;
   alt: string;
   label: string;
+  technical: {
+    date: string;
+    scale: string;
+    software: string;
+  };
 };
+
+const lightboxImages: LightboxImage[] = [
+  { src: assets.buildingMain, alt: "Lámina técnica con localización, sótano y volumetría del proyecto de edificaciones", label: "A-001 / Localización y sótano", technical: { date: "Archivo 2026", scale: "1:75", software: "Por confirmar" } },
+  { src: assets.buildingPlanOne, alt: "Plantas de primer piso y pisos tipo", label: "A-002 / Plantas", technical: { date: "Archivo 2026", scale: "1:75", software: "Por confirmar" } },
+  { src: assets.buildingPlanTwo, alt: "Plantas de niveles superiores", label: "A-003 / Pisos tipo", technical: { date: "Archivo 2026", scale: "1:75", software: "Por confirmar" } },
+  { src: assets.buildingSection, alt: "Cortes longitudinal y transversal", label: "A-004 / Cortes", technical: { date: "Archivo 2026", scale: "1:75", software: "Por confirmar" } },
+  { src: assets.buildingFacade, alt: "Fachadas del proyecto de edificaciones", label: "A-005 / Fachadas", technical: { date: "Archivo 2026", scale: "1:75", software: "Por confirmar" } },
+  { src: assets.kitchenRenderOne, alt: "Render de cocina con isla y gran altura", label: "Cocina / Vista principal", technical: { date: "Archivo 2026", scale: "Escala doméstica", software: "Por confirmar" } },
+  { src: assets.kitchenRenderTwo, alt: "Render de cocina con grandes ventanas verticales", label: "Cocina / Luz, altura y material", technical: { date: "Archivo 2026", scale: "Escala doméstica", software: "Por confirmar" } },
+  { src: assets.kitchenSpecs, alt: "Especificación de zona de lavado y productos", label: "Cocina / Zona de lavado", technical: { date: "Archivo 2026", scale: "Detalle de producto", software: "Por confirmar" } },
+  { src: assets.backyardPlan, alt: "Planta, sección y axonometría de Project Backyard", label: "Project Backyard / Planimetría", technical: { date: "Archivo 2026", scale: "Intervención residencial", software: "Por confirmar" } },
+  { src: assets.backyardMood, alt: "Moodboard de madera, piedra, sanitarios y grifería para Project Backyard", label: "Project Backyard / Referencias de acabado", technical: { date: "Archivo 2026", scale: "Paleta material", software: "Por confirmar" } },
+  { src: assets.tierraPlan, alt: "Planimetría y axonometría de remodelación Gastro-Bar para Tierra Mía", label: "Tierra Mía / Levantamiento arquitectónico", technical: { date: "Archivo 2026", scale: "Levantamiento / NTS", software: "Por confirmar" } },
+  { src: assets.tierraFacade, alt: "Fachada intervenida con identidad visual de Tierra Mía", label: "Tierra Mía / Fachada e identidad espacial", technical: { date: "Archivo 2026", scale: "Fachada / identidad", software: "Por confirmar" } },
+  { src: assets.tierraAccess, alt: "Tapete de acceso con identidad Tierra Mía", label: "Tierra Mía / Acceso y bienvenida", technical: { date: "Archivo 2026", scale: "Aplicación de marca", software: "Por confirmar" } },
+  { src: assets.tierraPackaging, alt: "Portavasos y empaque Tierra Mía", label: "Tierra Mía / Servicio y empaque", technical: { date: "Archivo 2026", scale: "Aplicación de marca", software: "Por confirmar" } },
+  { src: assets.tierraMobility, alt: "Mochila de reparto con identidad Tierra Mía", label: "Tierra Mía / Movilidad y visibilidad", technical: { date: "Archivo 2026", scale: "Aplicación de marca", software: "Por confirmar" } },
+  { src: assets.market, alt: "Branding de gran escala en New Covent Garden Market", label: "New Covent Garden Market / Branding urbano", technical: { date: "Archivo 2026", scale: "Intervención urbana", software: "Por confirmar" } },
+  { src: assets.app, alt: "Diseño de aplicación móvil para productos frescos", label: "New Covent Garden Market / Flujo de compra", technical: { date: "Archivo 2026", scale: "Prototipo móvil", software: "Por confirmar" } },
+];
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -169,7 +195,19 @@ export default function Home() {
   useEffect(() => {
     if (!lightbox) return;
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setLightbox(null);
+      if (event.key === "Escape") {
+        setLightbox(null);
+        return;
+      }
+      const currentIndex = lightboxImages.findIndex((image) => image.src === lightbox.src);
+      if (event.key === "ArrowLeft") {
+        const previousIndex = (Math.max(currentIndex, 0) - 1 + lightboxImages.length) % lightboxImages.length;
+        setLightbox(lightboxImages[previousIndex]);
+      }
+      if (event.key === "ArrowRight") {
+        const nextIndex = (Math.max(currentIndex, 0) + 1) % lightboxImages.length;
+        setLightbox(lightboxImages[nextIndex]);
+      }
     };
     document.addEventListener("keydown", closeOnEscape);
     document.body.style.overflow = "hidden";
@@ -194,9 +232,19 @@ export default function Home() {
     window.setTimeout(() => setActiveProject(null), 1050);
   };
 
-  const openLightbox = (image: LightboxImage) => setLightbox(image);
+  const openLightbox = (image: Pick<LightboxImage, "src" | "alt" | "label">) => {
+    const detailedImage = lightboxImages.find((item) => item.src === image.src);
+    setLightbox(detailedImage ?? { ...image, technical: { date: "Archivo 2026", scale: "No especificada", software: "Por confirmar" } });
+  };
 
-  const zoomableProps = (image: LightboxImage) => ({
+  const currentLightboxIndex = lightbox ? lightboxImages.findIndex((image) => image.src === lightbox.src) : -1;
+  const navigateLightbox = (direction: -1 | 1) => {
+    if (!lightbox) return;
+    const nextIndex = (Math.max(currentLightboxIndex, 0) + direction + lightboxImages.length) % lightboxImages.length;
+    setLightbox(lightboxImages[nextIndex]);
+  };
+
+  const zoomableProps = (image: Pick<LightboxImage, "src" | "alt" | "label">) => ({
     role: "button" as const,
     tabIndex: 0,
     onClick: () => openLightbox(image),
@@ -246,12 +294,19 @@ export default function Home() {
       {lightbox && (
         <div className="lightbox" role="dialog" aria-modal="true" aria-label={`Vista ampliada: ${lightbox.label}`} onClick={() => setLightbox(null)}>
           <button className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Cerrar vista ampliada"><X size={22} /></button>
+          <button className="lightbox-nav lightbox-nav--previous" onClick={(event) => { event.stopPropagation(); navigateLightbox(-1); }} aria-label="Ver imagen anterior"><ChevronLeft size={24} /></button>
+          <button className="lightbox-nav lightbox-nav--next" onClick={(event) => { event.stopPropagation(); navigateLightbox(1); }} aria-label="Ver imagen siguiente"><ChevronRight size={24} /></button>
           <div className="lightbox-content" onClick={(event) => event.stopPropagation()}>
             <img src={lightbox.src} alt={lightbox.alt} />
             <div className="lightbox-caption">
               <p className="lightbox-caption__eyebrow">Vista ampliada</p>
               <h2>{lightbox.label}</h2>
               <p className="lightbox-caption__description">{lightbox.alt}</p>
+              <dl className="lightbox-technical" aria-label="Detalles técnicos de la imagen">
+                <div><dt>Fecha</dt><dd>{lightbox.technical.date}</dd></div>
+                <div><dt>Escala</dt><dd>{lightbox.technical.scale}</dd></div>
+                <div><dt>Software</dt><dd>{lightbox.technical.software}</dd></div>
+              </dl>
             </div>
           </div>
         </div>

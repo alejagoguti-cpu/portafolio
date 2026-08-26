@@ -997,8 +997,11 @@ a:active {
 .case-section--active { animation: archive-focus 820ms var(--ease-out); }
 
 [role="button"]:focus-visible, .project-filters button:focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; }
-.drawing-feature[role="button"], .drawing-sheet[role="button"], .kitchen-main[role="button"], .kitchen-detail[role="button"], .kitchen-spec[role="button"], .backyard-drawing[role="button"], .backyard-mood[role="button"], .tierra-plan[role="button"], .tierra-facade[role="button"], .tierra-card[role="button"], .market-photo[role="button"], .app-image[role="button"] { cursor: zoom-in; }
+.drawing-feature[role="button"], .drawing-sheet[role="button"], .kitchen-main[role="button"], .kitchen-detail[role="button"], .kitchen-spec[role="button"], .backyard-drawing[role="button"], .backyard-mood[role="button"], .tierra-plan[role="button"], .tierra-facade[role="button"], .tierra-card[role="button"], .market-photo[role="button"], .app-image[role="button"] { position: relative; cursor: zoom-in; isolation: isolate; transition: box-shadow 180ms var(--ease-out); }
 .drawing-sheet figcaption svg, .kitchen-main figcaption svg, .kitchen-detail figcaption svg, .kitchen-spec figcaption svg, .backyard-drawing figcaption svg, .backyard-mood figcaption svg, .tierra-plan figcaption svg, .tierra-facade figcaption svg, .tierra-card figcaption svg, .market-photo figcaption svg, .app-image figcaption svg { margin-left: auto; opacity: .65; }
+.drawing-feature[role="button"]::after, .drawing-sheet[role="button"]::after, .kitchen-main[role="button"]::after, .kitchen-detail[role="button"]::after, .kitchen-spec[role="button"]::after, .backyard-drawing[role="button"]::after, .backyard-mood[role="button"]::after, .tierra-plan[role="button"]::after, .tierra-facade[role="button"]::after, .tierra-card[role="button"]::after, .market-photo[role="button"]::after, .app-image[role="button"]::after { position: absolute; z-index: 2; top: 12px; right: 12px; padding: 7px 9px; content: "Ampliar ↗"; background: var(--ink); color: #fff; font-family: var(--mono); font-size: 7px; letter-spacing: .08em; opacity: 0; pointer-events: none; transform: translateY(5px); transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out); }
+.drawing-feature[role="button"]:hover, .drawing-feature[role="button"]:focus-visible, .drawing-sheet[role="button"]:hover, .drawing-sheet[role="button"]:focus-visible, .kitchen-main[role="button"]:hover, .kitchen-main[role="button"]:focus-visible, .kitchen-detail[role="button"]:hover, .kitchen-detail[role="button"]:focus-visible, .kitchen-spec[role="button"]:hover, .kitchen-spec[role="button"]:focus-visible, .backyard-drawing[role="button"]:hover, .backyard-drawing[role="button"]:focus-visible, .backyard-mood[role="button"]:hover, .backyard-mood[role="button"]:focus-visible, .tierra-plan[role="button"]:hover, .tierra-plan[role="button"]:focus-visible, .tierra-facade[role="button"]:hover, .tierra-facade[role="button"]:focus-visible, .tierra-card[role="button"]:hover, .tierra-card[role="button"]:focus-visible, .market-photo[role="button"]:hover, .market-photo[role="button"]:focus-visible, .app-image[role="button"]:hover, .app-image[role="button"]:focus-visible { box-shadow: inset 0 0 0 2px var(--clay); }
+.drawing-feature[role="button"]:hover::after, .drawing-feature[role="button"]:focus-visible::after, .drawing-sheet[role="button"]:hover::after, .drawing-sheet[role="button"]:focus-visible::after, .kitchen-main[role="button"]:hover::after, .kitchen-main[role="button"]:focus-visible::after, .kitchen-detail[role="button"]:hover::after, .kitchen-detail[role="button"]:focus-visible::after, .kitchen-spec[role="button"]:hover::after, .kitchen-spec[role="button"]:focus-visible::after, .backyard-drawing[role="button"]:hover::after, .backyard-drawing[role="button"]:focus-visible::after, .backyard-mood[role="button"]:hover::after, .backyard-mood[role="button"]:focus-visible::after, .tierra-plan[role="button"]:hover::after, .tierra-plan[role="button"]:focus-visible::after, .tierra-facade[role="button"]:hover::after, .tierra-facade[role="button"]:focus-visible::after, .tierra-card[role="button"]:hover::after, .tierra-card[role="button"]:focus-visible::after, .market-photo[role="button"]:hover::after, .market-photo[role="button"]:focus-visible::after, .app-image[role="button"]:hover::after, .app-image[role="button"]:focus-visible::after { opacity: 1; transform: translateY(0); }
 
 .site-loader { position: fixed; z-index: 90; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #fff; color: var(--ink); font-family: var(--mono); font-size: 9px; letter-spacing: .15em; }
 .site-loader-mark { position: relative; display: block; width: 44px; height: 44px; }
@@ -1008,12 +1011,20 @@ a:active {
 .lightbox { position: fixed; z-index: 80; inset: 0; display: flex; padding: clamp(18px, 4vw, 60px); align-items: center; justify-content: center; background: rgba(19,19,18,.92); backdrop-filter: blur(7px); animation: overlay-in 240ms var(--ease-out); }
 .lightbox-close { position: fixed; top: 22px; right: 24px; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgba(255,255,255,.32); background: rgba(0,0,0,.18); color: #fff; transition: background-color 180ms var(--ease-out), transform 180ms var(--ease-out); }
 .lightbox-close:hover { background: var(--clay); transform: rotate(6deg); }
+.lightbox-nav { position: fixed; z-index: 3; top: 50%; display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid rgba(255,255,255,.32); background: rgba(0,0,0,.22); color: #fff; transform: translateY(-50%); transition: background-color 180ms var(--ease-out), transform 180ms var(--ease-out); }
+.lightbox-nav:hover { background: var(--clay); transform: translateY(-50%) scale(.96); }
+.lightbox-nav--previous { left: 24px; }
+.lightbox-nav--next { right: 24px; }
 .lightbox-content { display: flex; width: min(1180px, 100%); max-height: 100%; flex-direction: column; align-items: center; animation: lightbox-content-in 300ms var(--ease-out); }
-.lightbox-content img { display: block; width: auto; max-width: 100%; max-height: calc(100vh - 200px); object-fit: contain; background: #fff; }
+.lightbox-content img { display: block; width: auto; max-width: 100%; max-height: calc(100vh - 262px); object-fit: contain; background: #fff; }
 .lightbox-caption { width: 100%; max-width: 1060px; margin: 13px 0 0; color: rgba(255,255,255,.94); }
 .lightbox-caption__eyebrow { margin: 0 0 5px; color: #ef9b7e; font-family: var(--mono); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; }
 .lightbox-caption h2 { margin: 0; font-family: var(--serif); font-size: clamp(19px, 2vw, 27px); font-weight: 400; letter-spacing: -.02em; line-height: 1.05; }
 .lightbox-caption__description { max-width: 720px; margin: 7px 0 0; color: rgba(255,255,255,.72); font-family: var(--mono); font-size: 9px; letter-spacing: .025em; line-height: 1.45; }
+.lightbox-technical { display: flex; margin: 12px 0 0; gap: 18px; color: rgba(255,255,255,.88); font-family: var(--mono); font-size: 8px; letter-spacing: .04em; }
+.lightbox-technical div { display: grid; gap: 3px; }
+.lightbox-technical dt { color: #ef9b7e; text-transform: uppercase; }
+.lightbox-technical dd { margin: 0; }
 
 @keyframes archive-focus { 0% { box-shadow: inset 0 0 0 0 rgba(187,76,43,0); } 28% { box-shadow: inset 4px 0 0 0 var(--clay); } 100% { box-shadow: inset 0 0 0 0 rgba(187,76,43,0); } }
 @keyframes overlay-in { from { opacity: 0; } to { opacity: 1; } }
@@ -1028,11 +1039,16 @@ a:active {
   .project-filters button:last-child { grid-column: span 2; }
   .lightbox { padding: 16px; }
   .lightbox-close { top: 14px; right: 14px; width: 38px; height: 38px; }
-  .lightbox-content img { max-height: calc(100vh - 172px); }
+  .lightbox-nav { width: 38px; height: 38px; top: auto; bottom: 15px; transform: none; }
+  .lightbox-nav:hover { transform: scale(.96); }
+  .lightbox-nav--previous { left: 15px; }
+  .lightbox-nav--next { right: 15px; }
+  .lightbox-content img { max-height: calc(100vh - 248px); }
   .lightbox-caption { margin-top: 10px; }
   .lightbox-caption__eyebrow { margin-bottom: 4px; font-size: 6px; }
   .lightbox-caption h2 { font-size: 18px; }
   .lightbox-caption__description { margin-top: 5px; font-size: 7px; }
+  .lightbox-technical { margin-top: 9px; gap: 11px; font-size: 6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

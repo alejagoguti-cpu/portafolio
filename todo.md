@@ -64,3 +64,6 @@
 - [x] Verificar la apertura y cierre del lightbox desde móvil y escritorio.
 - [x] Añadir títulos y descripciones breves a todas las imágenes en la vista ampliada.
 - [x] Verificar la legibilidad de las leyendas del lightbox en móvil y escritorio.
+- [x] Añadir una señal visual de ampliación al pasar el cursor por cada imagen interactiva.
+- [x] Incorporar controles de anterior y siguiente para recorrer imágenes dentro del lightbox.
+- [x] Integrar fecha, escala y software en las fichas técnicas de la vista ampliada.
