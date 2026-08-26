@@ -325,6 +325,19 @@ export default function Home() {
                 <div><dt>Software</dt><dd>{lightbox.technical.software}</dd></div>
               </dl>
               <p className="lightbox-counter" aria-live="polite">{currentLightboxIndex + 1} / {currentProjectImages.length} imágenes</p>
+              <div className="lightbox-thumbnails" role="group" aria-label={`Imágenes de ${lightbox.projectLabel}`}>
+                {currentProjectImages.map((image, index) => (
+                  <button
+                    key={image.src}
+                    className={`lightbox-thumbnail ${image.src === lightbox.src ? "lightbox-thumbnail--active" : ""}`}
+                    onClick={() => setLightbox(image)}
+                    aria-label={`Ver imagen ${index + 1} de ${currentProjectImages.length}: ${image.label}`}
+                    aria-pressed={image.src === lightbox.src}
+                  >
+                    <img src={image.src} alt="" />
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

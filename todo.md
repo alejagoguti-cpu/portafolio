@@ -70,3 +70,6 @@
 - [x] Actualizar el software técnico mostrado a AutoCAD y Revit.
 - [x] Limitar el contador y la navegación del lightbox a las imágenes del mismo proyecto.
 - [x] Añadir deslizamiento horizontal para navegar el lightbox en dispositivos móviles.
+- [x] Ocultar las flechas de navegación del lightbox en pantallas móviles.
+- [x] Añadir miniaturas interactivas de las imágenes del proyecto activo dentro del lightbox.
+- [x] Reforzar la animación de apertura y la visibilidad del control de cierre.
