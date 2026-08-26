@@ -73,3 +73,6 @@
 - [x] Ocultar las flechas de navegación del lightbox en pantallas móviles.
 - [x] Añadir miniaturas interactivas de las imágenes del proyecto activo dentro del lightbox.
 - [x] Reforzar la animación de apertura y la visibilidad del control de cierre.
+- [x] Ocultar las miniaturas móviles después de un deslizamiento horizontal.
+- [x] Mostrar un indicador de carga mientras se prepara cada imagen ampliada.
+- [x] Verificar atajos de flechas y Escape, carga y comportamiento móvil del lightbox.

@@ -153,6 +153,8 @@ export default function Home() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [lightbox, setLightbox] = useState<LightboxImage | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [lightboxImageLoading, setLightboxImageLoading] = useState(false);
+  const [showLightboxThumbnails, setShowLightboxThumbnails] = useState(true);
   const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
@@ -200,16 +202,19 @@ export default function Home() {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setLightbox(null);
+        setLightboxImageLoading(false);
         return;
       }
       const projectImages = lightboxImages.filter((image) => image.project === lightbox.project);
       const currentIndex = projectImages.findIndex((image) => image.src === lightbox.src);
       if (event.key === "ArrowLeft") {
         const previousIndex = (Math.max(currentIndex, 0) - 1 + projectImages.length) % projectImages.length;
+        setLightboxImageLoading(true);
         setLightbox(projectImages[previousIndex]);
       }
       if (event.key === "ArrowRight") {
         const nextIndex = (Math.max(currentIndex, 0) + 1) % projectImages.length;
+        setLightboxImageLoading(true);
         setLightbox(projectImages[nextIndex]);
       }
     };
@@ -238,6 +243,8 @@ export default function Home() {
 
   const openLightbox = (image: Pick<LightboxImage, "src" | "alt" | "label">) => {
     const detailedImage = lightboxImages.find((item) => item.src === image.src);
+    setLightboxImageLoading(true);
+    setShowLightboxThumbnails(true);
     setLightbox(detailedImage ?? { ...image, project: "archivo", projectLabel: "Archivo", technical: { date: "Archivo 2026", scale: "No especificada", software: "AutoCAD · Revit" } });
   };
 
@@ -246,6 +253,7 @@ export default function Home() {
   const navigateLightbox = (direction: -1 | 1) => {
     if (!lightbox) return;
     const nextIndex = (Math.max(currentLightboxIndex, 0) + direction + currentProjectImages.length) % currentProjectImages.length;
+    setLightboxImageLoading(true);
     setLightbox(currentProjectImages[nextIndex]);
   };
 
@@ -258,6 +266,7 @@ export default function Home() {
     const swipeDistance = event.changedTouches[0].clientX - touchStartX.current;
     touchStartX.current = null;
     if (Math.abs(swipeDistance) < 48) return;
+    setShowLightboxThumbnails(false);
     navigateLightbox(swipeDistance < 0 ? 1 : -1);
   };
 
@@ -309,12 +318,15 @@ export default function Home() {
       </div>
 
       {lightbox && (
-        <div className="lightbox" role="dialog" aria-modal="true" aria-label={`Vista ampliada: ${lightbox.label}`} onClick={() => setLightbox(null)}>
-          <button className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Cerrar vista ampliada"><X size={22} /></button>
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label={`Vista ampliada: ${lightbox.label}`} onClick={() => { setLightbox(null); setLightboxImageLoading(false); }}>
+          <button className="lightbox-close" onClick={() => { setLightbox(null); setLightboxImageLoading(false); }} aria-label="Cerrar vista ampliada"><X size={22} /></button>
           <button className="lightbox-nav lightbox-nav--previous" onClick={(event) => { event.stopPropagation(); navigateLightbox(-1); }} aria-label="Ver imagen anterior"><ChevronLeft size={24} /></button>
           <button className="lightbox-nav lightbox-nav--next" onClick={(event) => { event.stopPropagation(); navigateLightbox(1); }} aria-label="Ver imagen siguiente"><ChevronRight size={24} /></button>
           <div className="lightbox-content" onClick={(event) => event.stopPropagation()} onTouchStart={handleLightboxTouchStart} onTouchEnd={handleLightboxTouchEnd} onTouchCancel={() => { touchStartX.current = null; }}>
-            <img src={lightbox.src} alt={lightbox.alt} />
+            <div className={`lightbox-image-frame ${lightboxImageLoading ? "lightbox-image-frame--loading" : ""}`}>
+              {lightboxImageLoading && <span className="lightbox-image-loader" role="status" aria-label="Cargando imagen en alta resolución" />}
+              <img src={lightbox.src} alt={lightbox.alt} onLoad={() => setLightboxImageLoading(false)} onError={() => setLightboxImageLoading(false)} />
+            </div>
             <div className="lightbox-caption">
               <p className="lightbox-caption__eyebrow">{lightbox.projectLabel} · Vista ampliada</p>
               <h2>{lightbox.label}</h2>
@@ -325,12 +337,12 @@ export default function Home() {
                 <div><dt>Software</dt><dd>{lightbox.technical.software}</dd></div>
               </dl>
               <p className="lightbox-counter" aria-live="polite">{currentLightboxIndex + 1} / {currentProjectImages.length} imágenes</p>
-              <div className="lightbox-thumbnails" role="group" aria-label={`Imágenes de ${lightbox.projectLabel}`}>
+              <div className={`lightbox-thumbnails ${showLightboxThumbnails ? "" : "lightbox-thumbnails--hidden-mobile"}`} role="group" aria-label={`Imágenes de ${lightbox.projectLabel}`}>
                 {currentProjectImages.map((image, index) => (
                   <button
                     key={image.src}
                     className={`lightbox-thumbnail ${image.src === lightbox.src ? "lightbox-thumbnail--active" : ""}`}
-                    onClick={() => setLightbox(image)}
+                    onClick={() => { setShowLightboxThumbnails(true); setLightboxImageLoading(true); setLightbox(image); }}
                     aria-label={`Ver imagen ${index + 1} de ${currentProjectImages.length}: ${image.label}`}
                     aria-pressed={image.src === lightbox.src}
                   >
